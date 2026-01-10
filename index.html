@@ -33,6 +33,24 @@
 
 <label>Volume</label><br>
 <input class="vol" type="range" min="0" max="200" value="100" oninput="setVolume(this.value)">
+<script>
+    const bgm = document.getElementById('bgm');
+const muteButton = document.querySelector('.mute');
+
+function toggleMusic() {
+    if (bgm.paused) {
+        bgm.play();
+        muteButton.textContent = '🔊 Mute Music';
+    } else {
+        bgm.pause();
+        muteButton.textContent = '▶ Play Music';
+    }
+}
+
+function setVolume(value) {
+    bgm.volume = value / 200;
+}
+</script>
 </head>
 
 <head>
@@ -560,7 +578,13 @@
         <a href="#listweb"><h1><strong> kembali ke list </strong></h1> <img src="tanda panah ke atas.png"></br>
         </div>
 </details>
-<script src="script.js"></script>
+<script src="Next.js"></script>
+<script>
+  window.si = window.si || function () {
+    (window.si.q = window.si.q || []).push(arguments);
+  };
+</script>
+<script defer src="https://vercel.com/insights/script.js"></script>
     </body>
 </head>
 

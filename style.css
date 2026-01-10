@@ -1,0 +1,375 @@
+/* ===== RESET & ANTI BUG HP ===== */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* ===== BODY ===== */
+body {
+  margin: 0;
+  color: white;
+  background: transparent;
+  position: relative;
+}
+
+/* IMAGE DI ATAS WEB */
+.top-image {
+  height: 100vh;              /* atur tinggi image */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #fff;          /* nutup RGB di area atas */
+  position: relative;
+  z-index: 1;
+}
+
+.char {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  backdrop-filter: blur(6px);
+}
+.btn:hover {
+  background: rgba(255,255,255,0.4);
+}
+
+/* ===== CONTAINER (TENGAH) ===== */
+.container {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+}
+
+/* ===== JUDUL ===== */
+h1 {
+  margin-top: 60px;
+  font-size: clamp(26px, 6vw, 40px);
+  letter-spacing: 1px;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+/* ===== PARAGRAF ===== */
+p {
+  font-size: 18px;
+  margin: 0px auto;
+  width: 100%;
+  max-width: 450px;
+  line-height: 1.8;
+  color: #e0e0e0;
+}
+
+/* ===== LINK ===== */
+a {
+  color: #ffd369;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 2px solid rgba(255, 211, 105, 0.4);
+  transition: 0.3s ease;
+}
+
+a:hover {
+  color: #ffffff;
+  border-bottom-color: #ffdf6e;
+}
+
+/* ===== IMAGE RESPONSIVE ===== */
+img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  border-radius: 15px;
+  margin: 25px auto;
+  display: block;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* ===== VIDEO RESPONSIVE ===== */
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* ===== BUTTON ===== */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #111;
+  color: white;
+  border: 2px solid cyan;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  box-shadow: 0 0 15px cyan;
+  transform: scale(1.1);
+}
+
+.power {
+    color: rgb(255, 0, 255);
+    font-size: 50px;
+}
+
+.list {
+    color: rgb(0, 255, 64);
+    font-kerning: 55px;
+}
+
+.info {
+    color: rgb(0, 0, 0)
+    
+}
+
+.sosmed {
+    color: black;
+    font-variant-emoji: calc();
+
+}
+
+.waifu1 {
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 12px;
+}
+
+.waifu1:hover {
+    animation: shake 0.4s infinite;
+    transform: scale(1.05);
+    box-shadow:
+        0 0 10px rgba(255, 211, 105, 0.6),
+        0 0 20px rgba(255, 211, 105, 0.4),
+        0 0 30px rgba(255, 211, 105, 0.2);
+}
+
+@keyframes shake {
+    0%   { transform: translateX(0) scale(1.05); }
+    25%  { transform: translateX(-5px) scale(1.05); }
+    50%  { transform: translateX(5px) scale(1.05); }
+    75%  { transform: translateX(-5px) scale(1.05); }
+    100% { transform: translateX(0) scale(1.05); }
+}
+
+.list {
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 12px;
+}
+
+.list:hover {
+    animation: shake 0.4s infinite;
+    transform: scale(1.05);
+    box-shadow:
+        0 0 10px rgba(255, 211, 105, 0.6),
+        0 0 20px rgba(255, 211, 105, 0.4),
+        0 0 30px rgba(255, 211, 105, 0.2);
+}
+
+@keyframes shake {
+    0%   { transform: translateX(0) scale(1.05); }
+    25%  { transform: translateX(-5px) scale(1.05); }
+    50%  { transform: translateX(5px) scale(1.05); }
+    75%  { transform: translateX(-5px) scale(1.05); }
+    100% { transform: translateX(0) scale(1.05); }
+}
+
+.bg-rainbow {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(255, 0, 0),
+    rgb(236, 30, 0),
+    yellow,
+    rgb(3, 255, 3),
+    cyan,
+    rgb(255, 30, 0),
+    rgb(255, 0, 0)
+  );
+  background-size: 600% 100%;
+  animation: rainbow 10000ms ease-in-out infinite;
+  z-index: -1;
+}
+
+/* Animasi diperjelas */
+@keyframes rainbow {
+  0% {
+    background-position: 0% 70%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 70%;
+  }
+}
+
+.rainbow {
+  background: linear-gradient(
+    90deg,
+    rgb(0, 238, 255),
+    rgb(0, 255, 21),
+    rgb(0, 255, 136),
+    rgb(255, 0, 0),
+    rgb(226, 82, 45),
+    rgb(0, 255, 255),
+    rgb(7, 142, 151),
+    rgb(253, 0, 253)
+  );
+  background-size: 400% 100%;
+  animation: rainbow 5s linear infinite;
+  font-size: large;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Animasi */
+@keyframes rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Versi statis (tanpa animasi) */
+.rainbow2 {
+  background: linear-gradient(
+    90deg,
+    red,
+    orange,
+    yellow,
+    green,
+    cyan,
+    blue,
+    violet
+  );
+  background-size: 100% 100%;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.animelist {
+  width: 200px;
+  transition: 0.3s ease;
+}
+
+.animelist:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 20px cyan);
+}
+
+.media-glow {
+  transition: 0.3s ease;
+  border-radius: 12px;
+}
+
+.media-glow:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+}
+
+.box {
+  font-size: 35px;
+  background: #ffffff;
+  color: #000000;
+  width: 200;
+  padding: 2%;
+  border: 5px solid #ff0000;
+  margin: 30px;
+}
+
+.box1 {
+  font-size: 35px;
+  background: #da02f7;
+  color: #15ff00;
+  width: 200;
+  padding: 2%;
+  border: 5px solid #00fff2;
+  margin: 30px;
+}
+
+.box2 {
+  font-size: 40px;
+  background: #000000;
+  color: #000000;
+  width: 200;
+  padding: 2%;
+  border: 10px solid #ff0000;
+  margin: 30px;
+}
+
+/* STYLE ASLI KAMU – TIDAK DIUBAH */
+.mute {
+  padding: 10px 20px;
+  font-size: 16px;
+  background: #111;
+  color: white;
+  border: 2px solid cyan;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.mute:hover {
+  box-shadow: 0 0 15px cyan;
+  transform: scale(1.15);
+}
+
+/* TAMBAHAN */
+.hero1 {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero1 .mute1 {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.vol {
+  width: 200px;
+  accent-color: #d9ff00;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+
+.gif {
+  max-width: 100%;
+  display: block;
+  margin: auto;
+  background-color: #000000;
+}
+

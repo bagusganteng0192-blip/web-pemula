@@ -201,13 +201,13 @@ button:hover {
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgb(255, 0, 0),
-    rgb(236, 30, 0),
+    rgb(136, 42, 42),
+    rgb(0, 0, 0),
     yellow,
     rgb(3, 255, 3),
     cyan,
     rgb(255, 30, 0),
-    rgb(255, 0, 0)
+    rgb(0, 0, 0)
   );
   background-size: 600% 100%;
   animation: rainbow 10000ms ease-in-out infinite;

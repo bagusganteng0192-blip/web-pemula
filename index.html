@@ -865,7 +865,7 @@ body {
 <!-- GATE WITH VIDEO -->
 <div id="gate">
 
-  <!-- VIDEO BACKGROUND (loop) -->
+  <!-- VIDEO BACKGROUND (loop) --> 
   <video autoplay loop playsinline>
     <source src="video loading.mp4" type="video/mp4">
   </video>
@@ -907,10 +907,19 @@ window.onload = () => {
   }, 3000);
 };
 
-/* ENTER */
 function openSite() {
+  const gate = document.getElementById("gate");
+  const video = document.querySelector("#gate video");
+
+  // stop video & audio
+  if (video) {
+    video.pause();
+    video.currentTime = 0;
+    video.muted = true;
+  }
+
+  // animasi keluar
   gate.style.opacity = "0";
-  gate.style.transition = "0.6s ease";
 
   setTimeout(() => {
     gate.style.display = "none";
@@ -918,6 +927,7 @@ function openSite() {
   }, 600);
 }
 </script>
+
 </body>
 </html>
     </body>

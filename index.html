@@ -60,10 +60,7 @@ function setVolume(value) {
         <img src="tanda panah ke bawah.png" loading="lazy">
         <p></p>
         <img src="mode dekstop2.jpg" style="width: 350px; height: 100px;" loading="lazy"  class="media-glow">
-        <p></p>
-                            <details>
-                            <summary class="mute"><a>"click here"👈<br>(to open everything)</a></summary>
-                                                    
+        <p></p>                                     
         <h2 id="listweb"></h2>                                  
         <h1 class="rainbow"> <strong>JIKA KALIAN MALAS UNTUK SCROLL<br> KLIK INI AJA</strong></h1></a> <h2 id="listweb"></h2>
         <img src="tanda panah ke bawah.png" style="width: 100px;" loading="lazy"  class="media-glow">
@@ -72,16 +69,14 @@ function setVolume(value) {
     <details>
         <summary class="mute"><a>👉"klik di sini"👈</a></summary>
             <h1 class="box2"><a href="#my istri"> My istri</h1></a>
-                <h1 class="box2"><a href="#kata-kata"> kata-katanya Queen</h1></a>
                     <h1 class="box2"><a href="#list waifu"> waifu list</h1></a>
                         <h1 class="box2"><a href="#jj random"> jj anime random</h1></a>
-                                    <h1 class="box2"><a href="#foto teman ku"> foto teman ku</h1></a>
+                                <h1 class="box2"><a href="#foto teman ku"> foto teman ku</h1></a>
                             <h1 class="box2"><a href="#jj genshin"> genshin impact edit</h1></a>
                         <h1 class="box2"><a href="#valorant"> valorant edit</h1></a>
                     <h1 class="box2"><a href="#test sinyal"> test kecepatan internet<br>via video</h1></a>
                 <h1 class="box2"><a href="#anime teman"> anime dari teman</h1></a>
             <h1 class="box2"><a href="#video dewasa"> video adult(beta)</h1></a>
-        <h1 class="box2"><a href="#about me"> about me</h1></a>
     </details>
 </nav>
 <br>
@@ -137,8 +132,8 @@ function setVolume(value) {
     </br>
     <a href="#listweb"> <h1><strong> kembali ke list </strong></h1>
 <a>
+<p></p>
 </a>
-    <h1>hmmmmm. kalo mau lihat waifu aku</h1>
 <script src="script.js"></script>
     <p></p>
     <h2 id="list waifu"></h2>
@@ -693,7 +688,6 @@ preload="none">
 <br></br>
         <a href="#listweb"><h1><strong> kembali ke list </strong></h1> <img src="tanda panah ke atas.png"></br>
         </div>
-</details>
 <audio id="clickSound" src="click sound.mp3" preload="auto"></audio>
 <script>
   window.si = window.si || function () {
@@ -716,6 +710,216 @@ videos.forEach(video => {
     });
 });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const allDetails = document.querySelectorAll("details");
+
+  allDetails.forEach((d) => {
+    d.addEventListener("toggle", () => {
+      if (d.open) {
+        allDetails.forEach((other) => {
+          if (other !== d) other.open = false;
+        });
+      }
+    });
+  });
+});
+</script>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>My Website</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: black;
+}
+
+/* ================= LOADING ================= */
+#loading {
+  position: fixed;
+  inset: 0;
+  background: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.loader-text {
+  font-size: 22px;
+  animation: pulse 1.2s infinite;
+}
+
+.bar {
+  width: 200px;
+  height: 4px;
+  background: #333;
+  margin-top: 15px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: white;
+  animation: load 3s ease forwards;
+}
+
+@keyframes load {
+  to { width: 100%; }
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* ================= GATE ================= */
+#gate {
+  position: fixed;
+  inset: 0;
+  display: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+/* VIDEO BACKGROUND */
+#gate video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  filter: brightness(0.4); /* biar tulisan keliatan */
+}
+
+/* OVERLAY CONTENT */
+.gate-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.gate-content h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  animation: float 2s ease-in-out infinite;
+}
+
+.gate-content button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  background: white;
+  color: black;
+  transition: 0.2s;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+.gate-content button:hover {
+  transform: scale(1.1);
+}
+
+/* ================= SITE ================= */
+#site {
+  display: none;
+  padding: 20px;
+  color: white;
+}
+
+/* FLOAT TEXT */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADING -->
+<div id="loading">
+  <div class="loader-text">Loading...</div>
+  <div class="bar"><span></span></div>
+</div>
+
+<!-- GATE WITH VIDEO -->
+<div id="gate">
+
+  <!-- VIDEO BACKGROUND (loop) -->
+  <video autoplay loop playsinline>
+    <source src="video loading.mp4" type="video/mp4">
+  </video>
+
+  <!-- CONTENT -->
+  <div class="gate-content">
+    <h1>🔒 Klik untuk Masuk</h1>
+    <button onclick="openSite()">ENTER</button>
+  </div>
+
+</div>
+
+<!-- SITE -->
+<div id="site">
+  <h1>Selamat Datang 👋</h1>
+
+  <details>
+    <summary>Video 1</summary>
+    Konten video 1
+  </details>
+
+  <details>
+    <summary>Video 2</summary>
+    Konten video 2
+  </details>
+
+</div>
+
+<script>
+const loading = document.getElementById("loading");
+const gate = document.getElementById("gate");
+const site = document.getElementById("site");
+
+/* LOADING */
+window.onload = () => {
+  setTimeout(() => {
+    loading.style.display = "none";
+    gate.style.display = "block";
+  }, 3000);
+};
+
+/* ENTER */
+function openSite() {
+  gate.style.opacity = "0";
+  gate.style.transition = "0.6s ease";
+
+  setTimeout(() => {
+    gate.style.display = "none";
+    site.style.display = "block";
+  }, 600);
+}
+</script>
+</body>
+</html>
     </body>
 </head>
 </html>

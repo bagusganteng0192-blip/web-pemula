@@ -1,2 +1,1 @@
-console.log("Hello World");
-console.log("anjayy its work");
+console.log("dont DDOS my site please");

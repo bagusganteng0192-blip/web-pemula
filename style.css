@@ -227,54 +227,105 @@ button:hover {
   }
 }
 
+
+.bg-rainbow {
+    position: fixed;
+    inset: 0;
+
+    background: linear-gradient(
+        90deg,
+        rgb(136, 42, 42),
+        rgb(0, 0, 0),
+        yellow,
+        rgb(3, 255, 3),
+        cyan,
+        rgb(255, 30, 0),
+        rgb(0, 0, 0)
+    );
+
+    background-size: 600% 100%;
+    animation: rainbow-bg 10s ease-in-out infinite;
+
+    z-index: -1;
+}
+
+@keyframes rainbow-bg {
+    0% {
+        background-position: 0% 70%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 70%;
+    }
+}
+
+
+/* =========================
+   RAINBOW TEXT
+   ========================= */
+
 .rainbow {
-  background: linear-gradient(
-    90deg,
-    rgb(0, 238, 255),
-    rgb(0, 255, 21),
-    rgb(0, 255, 136),
-    rgb(255, 0, 0),
-    rgb(226, 82, 45),
-    rgb(0, 255, 255),
-    rgb(7, 142, 151),
-    rgb(253, 0, 253)
-  );
-  background-size: 400% 100%;
-  animation: rainbow 5s linear infinite;
-  font-size: large;
+    background: linear-gradient(
+        90deg,
+        rgb(0, 0, 0),
+        rgb(255, 30, 0),
+        cyan,
+        rgb(3, 255, 3),
+        yellow,
+        rgb(0, 0, 0),
+        rgb(136, 42, 42)
+    );
 
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+    background-size: 400% 100%;
+    animation: rainbow-text 8s ease-in-out infinite;
+
+    font-size: large;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
-/* Animasi */
-@keyframes rainbow {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
+@keyframes rainbow-text {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-/* Versi statis (tanpa animasi) */
+
+/* =========================
+   RAINBOW TEXT STATIC
+   ========================= */
+
 .rainbow2 {
-  background: linear-gradient(
-    90deg,
-    red,
-    orange,
-    yellow,
-    green,
-    cyan,
-    blue,
-    violet
-  );
-  background-size: 100% 100%;
+    background: linear-gradient(
+        90deg,
+        red,
+        orange,
+        yellow,
+        green,
+        cyan,
+        blue,
+        violet
+    );
 
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+    background-size: 100% 100%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .animelist {

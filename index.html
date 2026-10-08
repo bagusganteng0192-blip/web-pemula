@@ -28,7 +28,7 @@
 
 <br><br>
 <label>Volume</label><br>
-<input class="vol" type="range" min="0" max="500" value="350" oninput="setVolume(this.value)">
+<input class="vol" type="range" min="0" max="100" value="70" oninput="setVolume(this.value)">
 <script>
     const bgm = document.getElementById('bgm');
 const muteButton = document.querySelector('.mute');
@@ -110,7 +110,6 @@ function setVolume(value) {
 <p></p>
 </details>
 <h2 id="preset am"></h2>
-<a href="#listweb"> <h1><strong> kembali ke list </strong></h1></a>
 
 <h1 class="rainbow"> editan admin</h1>
 <details>
@@ -280,7 +279,6 @@ function setVolume(value) {
     </details>
     
     <h2 id="valorant"></h2>
-<a href="#listweb"> <h1><strong> kembali ke list </strong></h1></a>
 
 <br></br>
 <h1 class="rainbow"> kumpulan jj genshin impact edit</h1>
@@ -422,7 +420,7 @@ loop>
     <source src="genshin edit/jj genshin impact edit14.mp4" type="video/mp4">
 </video>
 <h2>cr: 𝐍𝐢𝐜𝐨</h2>
-<iframe class="media-glow" loading="lazy"
+<iframe class="media-glow" preloading="metadata" loading="lazy"
 src="https://www.youtube.com/embed/EwWbahV3qmU" allowfullscreen preload="none">
 </iframe>
 <h2>cr: HoYoverse</h2>
@@ -449,7 +447,7 @@ src="https://www.youtube.com/embed/EwWbahV3qmU" allowfullscreen preload="none">
 <h2>cr: clark</h2>
 </details>
 <p></p>
-<a href="#listweb"> <h1><strong> kembali ke list </strong></h1></a>
+<br>
 <p></p> 
 <h2 id="video 4 queen"></h2>
 <h1 class="rainbow"> "TEST KECEPATAN SINYAL INTERNET KALIAN"<br>
@@ -608,7 +606,6 @@ preload="none">
 <p></p>
 
 <h2 id="video hentai"></h2>
-<a href="#listweb"> <h1><strong> kembali ke list </strong></h1></a>
     <br>
     <h1 class="rainbow">4  Heavenly Queen</h1>
     <details>
@@ -638,7 +635,7 @@ preload="none">
 </video>
 <h2>cr: 𝙍𝙖𝙮𝙯𝙤𝙤𝙬𝙖𝙣𝙜𝙮</h2>
 <p></p>
-<video class="media-glow" controls width="350px" preload="lazy">
+<video class="media-glow" loop controls width="350px" preload="lazy">
     <source src="video 4 queen5.mp4" type="video/mp4">
 </video>
 <h2>cr: 𝙈𝙤𝙣𝙖𝙘𝙖𝙎𝙚𝙣𝙥𝙖𝙞</h2>
@@ -893,9 +890,6 @@ body {
   100% { transform: translateY(0px); }
 }
 </style>
-</head>
-
-<body>
 
 <!-- LOADING -->
 <div id="loading">
@@ -916,9 +910,13 @@ body {
     <h1>🔒 Klik untuk Masuk</h1>
     <button  onclick="openSite()">ENTER</button>
   </div>
-
+<id="site">
+  <!-- SITE CONTENT -->
+  <div id="site">
+    <h1>Selamat Datang di Situs Saya!</h1>
+    <p>Ini adalah konten utama situs.</p>
+  </div>
 </div>
-
 <script>
 const loading = document.getElementById("loading");
 const gate = document.getElementById("gate");

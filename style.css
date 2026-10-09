@@ -234,35 +234,15 @@ button:hover {
 
     background: linear-gradient(
         90deg,
-        rgb(136, 42, 42),
-        rgb(0, 0, 0),
-        yellow,
-        rgb(3, 255, 3),
-        cyan,
-        rgb(255, 30, 0),
-        rgb(0, 0, 0)
+        #111111,
+        #707070,
+        #747474,
+        #707070,
+        #111111
     );
-
-    background-size: 600% 100%;
-    animation: rainbow-bg 10s ease-in-out infinite;
 
     z-index: -1;
 }
-
-@keyframes rainbow-bg {
-    0% {
-        background-position: 0% 70%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 70%;
-    }
-}
-
 
 /* =========================
    RAINBOW TEXT

@@ -9,19 +9,19 @@
 
     <title>Belajar Bikin Website</title>
 
-    <link rel="icon" type="image/jpg" href="tobat1.jpeg">
+    <link loading="lazy" rel="icon" type="image/jpg" href="icon.jpg">
 
     <link rel="stylesheet" href="style.css">
 
-    <div class="top-image">
-<img src="image background.webp" class="char">
+    <div id="headfoto" class="top-image">
+<img loading="lazy" src="image background.webp" class="char">
 </div>
 <div class="bg-rainbow" id="rainbowBG"></div>
 <div class="container">
     <h2 id="listweb"></h2>  
 <h2 class="rainbow"> copyright: HoYoLAB and HoYoverse</h2>
 <audio id="bgm" loop>
-    <source src="backsound for web.mp3" type="audio/mp3">
+    <source preload="auto" src="backsound for web.mp3" type="audio/mp3">
 </audio>
 
 <button class="mute" onclick="toggleMusic()">▶ Play Music</button>
@@ -78,32 +78,32 @@ function setVolume(value) {
     <h1 class="rainbow"> my favorite anime list</h1>
 <details>
     <summary class="mute"><a>👉"CLICK HERE"👈</a></summary>
-<h1 class="rainbow">no.1 <br>Alya</h1  loading="lazy" class="animelist" ></a>
-<video class="media-glow" controls width="250px" preload="none" poster="list waifu/alya list1.png">
+<h1 class="rainbow">no.1 <br>Alya</h1 class="animelist" ></a>
+<video class="media-glow" controls width="250px" preload="none" loading="lazy" poster="list waifu/alya list1.png">
     <source src="list waifu/alya video list.mp4" type="video/mp4">
 </video>
 <p>cr: 𝐑𝐲 𝐟𝐭 𝐀𝐋𝐅〆𝐘𝐋 𝐊𝐆𝐍</p>
 <br>
-<h1 class="rainbow">no.2 <br>Waguri</h1 loading="lazy" class="animelist"></a>
-<video class="media-glow" controls width="250px" preload="none" poster="list waifu/waguri list2.png">
+<h1 class="rainbow">no.2 <br>Waguri</h1 class="animelist"></a>
+<video class="media-glow" controls width="250px" preload="none" loading="lazy" poster="list waifu/waguri list2.png">
     <source src="list waifu/waguri video list.mp4" type="video/mp4">
 </video>
 <p>cr: Yonaaa✰</p>
 <br>
-<h1 class="rainbow">no.3 <br>Kurumi</h1 loading="lazy" class="animelist"></a>
-<video class="media-glow" controls width="250px" preload="none" poster="list waifu/kurumi list3.png">
+<h1 class="rainbow">no.3 <br>Kurumi</h1 class="animelist"></a>
+<video class="media-glow" controls width="250px" preload="none" loading="lazy" poster="list waifu/kurumi list3.png">
     <source src="list waifu/kurumi video list.mp4" type="video/mp4">
 </video>
 <p>cr: FazzA6`</p>
 <br>
-<h1 class="rainbow">no.4 <br>Elaina</h1  loading="lazy" class="animelist"></a>
-<video class="media-glow" controls width="250px" preload="none" poster="list waifu/elaina list4.png">
+<h1 class="rainbow">no.4 <br>Elaina</h1 class="animelist"></a>
+<video class="media-glow" controls width="250px" preload="none" loading="lazy" poster="list waifu/elaina list4.png">
     <source src="list waifu/elaina video list.mp4" type="video/mp4">
 </video>
 <p>cr: — Kᴇʟᴠɪɴ 友</p>
 <br>
-<h1 class="rainbow">no.5 <br>Miwa</h1  loading="lazy" class="animelist"></a>
-<video class="media-glow" controls width="250px" preload="none" poster="list waifu/miwa list5.png">
+<h1 class="rainbow">no.5 <br>Miwa</h1 class="animelist"></a>
+<video class="media-glow" controls width="250px" preload="none" loading="lazy" poster="list waifu/miwa list5.png">
     <source src="list waifu/miwa video list.mp4" type="video/mp4">
 </video>
 <p>cr: Yonaaa✰</p>
@@ -251,7 +251,6 @@ function setVolume(value) {
         <source src="anime random8.mp4" type="video/mp4">
     </video>
     <p>
-        <img class="media-glow" src="ketek sylpha.png" width="150px">
     </p>
     <h2>cr: —𝙋𝙋𝙂𝙇•𝙏𝙀𝙉𝙎𝙀𝙄 𝑪𝑨𝑶࿐</h2>
     <p></p>
@@ -478,7 +477,14 @@ preload="none">
 <iframe class="media-glow" 
 preloading="metadata" 
 loading="lazy"
-src="https://www.youtube.com/embed/EwWbahV3qmU" allowfullscreen preload="none">
+src="https://www.youtube.com/embed/EwWbahV3qmU" 
+allow="accelerometer; 
+autoplay; 
+clipboard-write; 
+encrypted-media; 
+gyroscope; 
+picture-in-picture" 
+allowfullscreen preload="none">
 </iframe>
 <h2>cr: HoYoverse</h2>
 </details>
@@ -487,6 +493,7 @@ src="https://www.youtube.com/embed/EwWbahV3qmU" allowfullscreen preload="none">
 <details>
     <summary class="mute"><a>👉"CLICK HERE"👈</a></summary>
 <video class="media-glow" 
+loading="lazy"
 controls width="350px" 
 preload="none" 
 poster="valorant foto1.png">
@@ -494,6 +501,7 @@ poster="valorant foto1.png">
 </video>
 <h2>cr: anil</h2>
 <video class="media-glow" 
+loading="lazy"
 controls width="350px" 
 preload="none" 
 poster="valorant foto2.png">
@@ -501,6 +509,7 @@ poster="valorant foto2.png">
 </video>
 <h2>cr: 𝐁𝐞𝐫𝐤𝐜𝐚𝐧</h2>
 <video class="media-glow" 
+loading="lazy"
 controls width="350px" 
 preload="none" 
 poster="valorant foto3.png">
@@ -508,6 +517,7 @@ poster="valorant foto3.png">
 </video>
 <h2>cr: Maybe Sam</h2>
 <video class="media-glow" 
+loading="lazy"
 controls width="350px" 
 preload="none" 
 poster="valorant foto4.png">
@@ -665,7 +675,8 @@ preload="none">
     <h1 class="rainbow">4  Heavenly Queen</h1>
     <details>
         <summary class="mute"><a>👉"CLICK HERE"👈</a></summary>
-<video class="media-glow" controls width="350px" preload="metadata">
+<video class="media-glow" loading="lazy"
+controls width="350px" preload="metadata">
     <source src="video 4 queen0.mp4" type="video/mp4">
 </video>
 <h2>─ 𝘿𝙖𝙢𝙢 🪐</h2>
@@ -726,6 +737,7 @@ controls width="350px" preload="metadata">
     controls 
     width="350px" 
     preload="none" 
+    loading="lazy"
     poster="hentai foto1.png">
         <source src="video hentai1.mp4" type="video/mp4">
     </video>
@@ -734,6 +746,7 @@ controls width="350px" preload="metadata">
     controls 
     width="350px" 
     preload="none" 
+    laoding="lazy"
     poster="hentai foto2.png">
         <source src="video hentai2.mp4" type="video/mp4">
     </video>
@@ -742,6 +755,7 @@ controls width="350px" preload="metadata">
 controls 
 width="350px" 
 preload="none" 
+loading="lazy"
 poster="hentai foto3.png">
     <source src="video hentai3.mp4" type="video/mp4">
 </video>
@@ -750,6 +764,7 @@ poster="hentai foto3.png">
 controls 
 width="350px" 
 preload="none" 
+loading="lazy"
 poster="hentai foto4.png">
     <source src="video hentai4.mp4" type="video/mp4">
 </video>
@@ -758,6 +773,7 @@ poster="hentai foto4.png">
 controls 
 width="350px" 
 preload="none" 
+loading="lazy"
 poster="hentai foto5.png">
     <source src="video hentai5.mp4" type="video/mp4">
 </video>
@@ -766,6 +782,7 @@ poster="hentai foto5.png">
 controls 
 width="350px" 
 preload="none" 
+loading="lazy"
 poster="hentai foto6.png">
     <source src="video hentai6.mp4" type="video/mp4">
 </video>
@@ -777,44 +794,44 @@ poster="hentai foto6.png">
     <details>
         <summary class="mute"><a>👉"CLICK HERE"👈</a></summary>
         <h1>pauzan</h1>
-        <img class="media-glow" src="pauzan.jpg" width="300px">
-        <img class="media-glow" src="pauzan1.jpg" width="300px">
+        <img loading="lazy" class="media-glow" src="pauzan.jpg" width="300px">
+        <img loading="lazy" class="media-glow" src="pauzan1.jpg" width="300px">
         <h1>pasha</h1>
-        <img class="media-glow" src="pasha.jpg" width="350px">
+        <img loading="lazy" class="media-glow" src="pasha.jpg" width="350px">
         <h1>helz</h1>
-        <img class="media-glow" src="helz.jpg" width="350px">
+        <img loading="lazy" class="media-glow" src="helz.jpg" width="350px">
         <h1>adit</h1>
-        <img class="media-glow" src="adit.png" width="350px">
+        <img loading="lazy" class="media-glow" src="adit.png" width="350px">
         <h1>yuta</h1>
-        <img src="yuta.gif" alt="animasi" class="gif" style="width: 300px;">
+        <img loading="lazy" src="yuta.gif" alt="animasi" class="gif" style="width: 300px;">
         <h1>amanda pler</h1>
-        <img class="media-glow" src="amanda.jpg" width="350px">
+        <img loading="lazy" class="media-glow" src="amanda.jpg" width="350px">
 </details>
     <P></P>
 <h2 id="about me"></h2>
 <h1>ini semua sosmed yang saya pakai. jika kalian ingin mampir ya silahkan</h1>
 <a href="https://www.youtube.com/@vicarTzy" target="_blank">
-    <h1 class="rainbow">Youtube</h1> <img src="Youtube_logo.png" class="animelist">
+    <h1 class="rainbow">Youtube</h1> <img loading="lazy" src="Youtube_logo.png" class="animelist">
 </a>
 <a href="https://www.tiktok.com/@vicartzy" target="_blank">
-    <h1 class="rainbow">Tiktok</h1> <img src="logo tiktok.png" class="animelist">
+    <h1 class="rainbow">Tiktok</h1> <img loading="lazy" src="logo tiktok.png" class="animelist">
 </a>
 <a href="https://www.roblox.com/users/5271199486/profile" target="_blank">
-    <h1 class="rainbow">Roblox</h1> <img src="Roblox.png" class="animelist">
+    <h1 class="rainbow">Roblox</h1> <img loading="lazy" src="Roblox.png" class="animelist">
 </a>
 <br>
 <a></a>
     <br></br>
 <a></a>
     <br></br>
-<img src="anime.gif" alt="animasi" class="gif" style="width: 100px;">
+<img loading="lazy" src="anime.gif" alt="animasi" class="gif" style="width: 100px;">
     <footer>
         <div><h1 class="box1"> for entertainment purposes only</h1>
         <h1 class="box">POWER BY<br> VICARBAGUS</h1>
     </footer>
 <br></br>
         <a href="#listweb"><h1><strong> kembali ke list </strong></h1> 
-            <img src="tanda panah ke atas.png"></br>
+            <img loading="lazy" src="tanda panah ke atas.png"></br>
         </div>
 <script>
   window.si = window.si || function () {
@@ -824,6 +841,11 @@ poster="hentai foto6.png">
 <script defer src="https://vercel.com/insights/script.js"></script>
 <script>
 const videos = document.querySelectorAll("video");
+document.addEventListener("DOMContentLoaded", () => {
+    videos.forEach(video => {
+        video.volume = 0.25; // Set default volume to 25%
+    });
+});
 
 videos.forEach(video => {
     video.addEventListener("volumechange", () => {
@@ -976,7 +998,7 @@ body {
 
   <!-- VIDEO BACKGROUND (loop) -->
   <video autoplay  muted loop playsinline>   
-    <source src="video loading.mp4" type="video/mp4">
+    <source preload="auto" src="video loading.mp4" type="video/mp4">
   </video>
 
   <!-- CONTENT -->
@@ -1011,7 +1033,7 @@ function openSite() {
   setTimeout(() => {
     gate.style.display = "none";
     site.style.display = "block";
-  }, 600);
+  }, 1000);
 }
 </script>
         <h2 id="my training web"></h2>

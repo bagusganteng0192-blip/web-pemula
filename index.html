@@ -8,15 +8,16 @@
     <title>Belajar Bikin Website</title>
     <link loading="lazy" rel="icon" type="image/jpg" href="favicon.jpg">
     <link rel="stylesheet" href="style.css">
-        <video autoplay loop playsinline id="uppervideo" class="headvideo">
-<source preload="auto" loading="fast" src="uppervideo.mp4">
+        <video playsinline loop id="uppervideo" class="headvideo">
+            <source preload="auto" src="uppervideo.mp4" class="char">
         </video>
 <div class="bg-rainbow" id="rainbowBG"></div>
 <div class="container">
     <h2 id="listweb"></h2>
     <body>
+        <p>play/pause video diatas ⬆</p>
         <button id="tombolronova" class="mute">pause</button>
-        <script>
+<script>
 const videoUpper = document.getElementById("uppervideo");
 const tombolVideo = document.getElementById("tombolronova");
 
@@ -958,11 +959,18 @@ function openSite() {
   setTimeout(() => {
     gate.style.display = "none";
     site.style.display = "block";
+        const videoUpper = document.getElementById("uppervideo");
+
+    videoUpper.muted = false;
+    videoUpper.play().catch(error => {
+      console.log("Video gagal diputar:", error);
+    });
+
     document.getElementById("uppervideo").scrollIntoView({
         behavior: "smooth",
         block: "start"
     });
-  }, 750);
+  }, 900);
 }
 </script>
 

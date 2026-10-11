@@ -8,20 +8,41 @@
     <title>Belajar Bikin Website</title>
     <link loading="lazy" rel="icon" type="image/jpg" href="favicon.jpg">
     <link rel="stylesheet" href="style.css">
-            <div id="uppervideo" class="top-image">
-        <video autoplay muted loop playsinline preload="auto" class="headvideo">
-<source loading="lazy" src="uppervideo.mp4" class="char">
+        <video autoplay loop playsinline id="uppervideo" class="headvideo">
+<source preload="auto" loading="fast" src="uppervideo.mp4">
         </video>
-</div>
 <div class="bg-rainbow" id="rainbowBG"></div>
 <div class="container">
     <h2 id="listweb"></h2>
     <body>
+        <button id="tombolronova" class="mute">pause</button>
+        <script>
+const videoUpper = document.getElementById("uppervideo");
+const tombolVideo = document.getElementById("tombolronova");
+
+function updateTombolVideo() {
+  tombolVideo.textContent = videoUpper.paused ? "play" : "pause";
+}
+
+tombolVideo.addEventListener("click", () => {
+  if (videoUpper.paused) {
+    videoUpper.play().catch(error => {
+      console.log("Video gagal diputar:", error);
+    });
+  } else {
+    videoUpper.pause();
+  }
+});
+
+videoUpper.addEventListener("play", updateTombolVideo);
+videoUpper.addEventListener("pause", updateTombolVideo);
+
+updateTombolVideo();
+</script>
         <h2 class="rainbow"> copyright: HoYoLAB and HoYoverse</h2>
 <audio id="bgm" loop>
     <source preload="auto" src="backsound for web.mp3" type="audio/mp3">
 </audio>
-
 <button class="mute" onclick="toggleMusic()">▶ Play Music</button>
 <br>
 <label class="rainbow">Volume</label><br>
@@ -786,7 +807,7 @@ body {
 
 .loader-text {
   font-size: 22px;
-  animation: pulse 1.2s infinite;
+  animation: pulse 1.5s infinite;
 }
 
 .bar {
@@ -803,7 +824,7 @@ body {
   height: 100%;
   width: 0%;
   background: white;
-  animation: load 3s ease forwards;
+  animation: load 2s ease forwards;
 }
 
 @keyframes load {
@@ -812,7 +833,7 @@ body {
 
 @keyframes pulse {
   0% { opacity: 1; }
-  50% { opacity: 0.4; }
+  50% { opacity: 0.5; }
   100% { opacity: 1; }
 }
 
@@ -897,13 +918,13 @@ body {
 
   <!-- VIDEO BACKGROUND (loop) -->
   <video autoplay muted loop playsinline>   
-    <source preload="auto" src="video loading.mp4" type="video/mp4">
+    <source preload="auto" src="video loading1.mp4" type="video/mp4">
   </video>
 
   <!-- CONTENT -->
   <div class="gate-content">
     <h1 id="teks">🔒 Klik untuk Masuk</h1>
-    <button id="tombol" <a href="" onclick="openSite()">ENTER</button>
+    <button id="tombol" onclick="openSite()">ENTER</button>
   </div>
 </div>
 
@@ -925,7 +946,7 @@ window.onload = () => {
   setTimeout(() => {
     loading.style.display = "none";
     gate.style.display = "block";
-  }, 3000);
+  }, 2500);
 };
 
 /* ENTER */
@@ -941,7 +962,7 @@ function openSite() {
         behavior: "smooth",
         block: "start"
     });
-  }, 700);
+  }, 750);
 }
 </script>
 

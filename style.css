@@ -236,7 +236,7 @@ button:hover {
         90deg,
         #111111,
         #707070,
-        #747474,
+        #ffffff,
         #707070,
         #111111
     );
@@ -251,12 +251,12 @@ button:hover {
 .rainbow {
     background: linear-gradient(
         90deg,
-        rgb(0, 0, 0),
+        rgb(89, 0, 255),
         rgb(255, 30, 0),
         cyan,
         rgb(3, 255, 3),
         yellow,
-        rgb(0, 0, 0),
+        rgb(8, 63, 126),
         rgb(136, 42, 42)
     );
 

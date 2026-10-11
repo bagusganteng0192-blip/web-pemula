@@ -25,9 +25,8 @@
 </audio>
 
 <button class="mute" onclick="toggleMusic()">▶ Play Music</button>
-
-<br><br>
-<label>Volume</label><br>
+<br>
+<label class="rainbow">Volume</label><br>
 <input class="vol" type="range" min="0" max="100" value="70" oninput="setVolume(this.value)">
 <script>
     const bgm = document.getElementById('bgm');
@@ -469,6 +468,8 @@ preload="none">
 </video>
 <h2>cr: Yuuki</h2>
 <iframe class="media-glow" 
+width="320px"
+height="180px"
 preloading="metadata" 
 loading="lazy"
 src="https://www.youtube.com/embed/EwWbahV3qmU" 
@@ -963,8 +964,8 @@ body {
 
 <!-- SITE CONTENT -->
 <div id="site">
-  <h1>Selamat Datang di Situs Saya!</h1>
-  <p>Ini adalah konten utama situs.</p>
+  <h1></h1>
+  <p></p>
   </div>
 <script>
 const loading = document.getElementById("loading");
@@ -990,9 +991,23 @@ function openSite() {
   }, 600);
 }
 </script>
+
+<script>
+const video = document.querySelectorAll("video");
+
+videos.forEach(video => {
+    video.addEventListener("play", () => {
+        videos.forEach(v => {
+            if (v !== video) {
+                v.pause();
+            }
+        });
+    });
+})
+</script>
         <h2 id="my training web"></h2>
 <p></p>
         <a href="latihan.html">Klik disini</a>
-       <script src="script.js"></script>
+       <script src="script.js" defer></script>
     </body>
 </head>

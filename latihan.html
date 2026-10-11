@@ -6,15 +6,21 @@
     <title>Latian</title>
 </head>
     <body>
+        <script src="script.js" defer></script>
     <a href="index.html"><h1>kembali ke halaman pertama</h1></a>
-<div class="popup">
-    <div class="popup-box">
-        <h2>Konfirmasi</h2>
-        <h2>Apakah kamu ingin kembali kehalaman pertama?</h2>
-        <button><a href="index.html">iya</a></button>
-        <button><a href="latihan.html">tidak</a></button>
-        
-    </div>
-</div>
+<button id="tombol">klik here</button>
+<a id="lampu">🌑Lampu Mati</a>
+
+<script>
+    const tombol = document.getElementById("tombol");
+    tombol.addEventListener("click", () => {
+        const lampu = document.getElementById("lampu");
+        if (lampu.textContent === "🌑Lampu Mati") {
+            lampu.textContent = "💡Lampu Hidup";
+        } else {
+            lampu.textContent = "🌑Lampu Mati";
+        }
+    });
+</script>
     </body>
 </html>

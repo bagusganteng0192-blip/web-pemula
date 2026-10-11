@@ -4,22 +4,20 @@
 <head>
     <meta name="google-site-verification" content="XxNkmpCZ2MTNbfzQEmnPQ7Uws5Wwrry1TvNeOCDQowg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <meta charset="UTF-8">
-
     <title>Belajar Bikin Website</title>
-
     <link loading="lazy" rel="icon" type="image/jpg" href="favicon.jpg">
-
     <link rel="stylesheet" href="style.css">
-
-    <div id="headfoto" class="top-image">
-<img loading="lazy" src="image background.webp" class="char">
+            <div id="uppervideo" class="top-image">
+        <video autoplay muted loop playsinline preload="auto" class="headvideo">
+<source loading="lazy" src="uppervideo.mp4" class="char">
+        </video>
 </div>
 <div class="bg-rainbow" id="rainbowBG"></div>
 <div class="container">
-    <h2 id="listweb"></h2>  
-<h2 class="rainbow"> copyright: HoYoLAB and HoYoverse</h2>
+    <h2 id="listweb"></h2>
+    <body>
+        <h2 class="rainbow"> copyright: HoYoLAB and HoYoverse</h2>
 <audio id="bgm" loop>
     <source preload="auto" src="backsound for web.mp3" type="audio/mp3">
 </audio>
@@ -46,9 +44,6 @@ function setVolume(value) {
     bgm.volume = value / 200;
 }
 </script>
-
-</head>
-    <body>
 <div class="bg-rainbow" id="rainbowBG"></div>
         <h1 class="rainbow">WELCOME TO MY WEBSITE</h1>                                  
         <h1 class="rainbow"> <strong>JIKA KALIAN MALAS UNTUK SCROLL<br> KLIK INI AJA</strong></h1></a> <h2 id="listweb"></h2>
@@ -956,7 +951,7 @@ body {
   <!-- CONTENT -->
   <div class="gate-content">
     <h1 id="teks">🔒 Klik untuk Masuk</h1>
-    <button id="tombol" onclick="openSite()">ENTER</button>
+    <button id="tombol" <a href="" onclick="openSite()">ENTER</button>
   </div>
 </div>
 
@@ -990,6 +985,10 @@ function openSite() {
   setTimeout(() => {
     gate.style.display = "none";
     site.style.display = "block";
+    document.getElementById("uppervideo").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
   }, 700);
 }
 </script>

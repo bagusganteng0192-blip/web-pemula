@@ -126,76 +126,6 @@ button {
   transition: 0.3s;
 }
 
-button:hover {
-  box-shadow: 0 0 15px cyan;
-  transform: scale(1.1);
-}
-
-.power {
-    color: rgb(255, 0, 255);
-    font-size: 50px;
-}
-
-.list {
-    color: rgb(0, 255, 64);
-    font-kerning: 55px;
-}
-
-.info {
-    color: rgb(0, 0, 0)
-    
-}
-
-.sosmed {
-    color: black;
-    font-variant-emoji: calc();
-
-}
-
-.waifu1 {
-    transition: transform 0.2s, box-shadow 0.2s;
-    border-radius: 12px;
-}
-
-.waifu1:hover {
-    animation: shake 0.4s infinite;
-    transform: scale(1.05);
-    box-shadow:
-        0 0 10px rgba(255, 211, 105, 0.6),
-        0 0 20px rgba(255, 211, 105, 0.4),
-        0 0 30px rgba(255, 211, 105, 0.2);
-}
-
-@keyframes shake {
-    0%   { transform: translateX(0) scale(1.05); }
-    25%  { transform: translateX(-5px) scale(1.05); }
-    50%  { transform: translateX(5px) scale(1.05); }
-    75%  { transform: translateX(-5px) scale(1.05); }
-    100% { transform: translateX(0) scale(1.05); }
-}
-
-.list {
-    transition: transform 0.2s, box-shadow 0.2s;
-    border-radius: 12px;
-}
-
-.list:hover {
-    animation: shake 0.4s infinite;
-    transform: scale(1.05);
-    box-shadow:
-        0 0 10px rgba(255, 211, 105, 0.6),
-        0 0 20px rgba(255, 211, 105, 0.4),
-        0 0 30px rgba(255, 211, 105, 0.2);
-}
-
-@keyframes shake {
-    0%   { transform: translateX(0) scale(1.05); }
-    25%  { transform: translateX(-5px) scale(1.05); }
-    50%  { transform: translateX(5px) scale(1.05); }
-    75%  { transform: translateX(-5px) scale(1.05); }
-    100% { transform: translateX(0) scale(1.05); }
-}
-
 .bg-rainbow {
   position: fixed;
   inset: 0;
@@ -234,11 +164,11 @@ button:hover {
 
     background: linear-gradient(
         90deg,
-        #111111,
-        #707070,
         #ffffff,
-        #707070,
-        #111111
+        #353535,
+        #000000,
+        #353535,
+        #ffffff
     );
 
     z-index: -1;

@@ -167,21 +167,25 @@ button {
 }
 
 
+
 .bg-rainbow {
     position: fixed;
     inset: 0;
 
     background: linear-gradient(
         90deg,
-        #ffffff,
-        #353535,
-        #000000,
-        #353535,
-        #ffffff
+        #ff0000 0%,
+        #ffffff 15%,
+        #202020 35%,
+        #000000 50%,
+        #202020 65%,
+        #ffffff 85%,
+        #ff0000 100%
     );
 
     z-index: -1;
 }
+
 
 /* =========================
    RAINBOW TEXT
@@ -190,13 +194,13 @@ button {
 .rainbow {
     background: linear-gradient(
         90deg,
-        rgb(89, 0, 255),
+        rgb(212, 147, 228),
         rgb(255, 30, 0),
         cyan,
         rgb(3, 255, 3),
         yellow,
-        rgb(8, 63, 126),
-        rgb(136, 42, 42)
+        rgb(66, 144, 233),
+        rgb(190, 111, 111)
     );
 
     background-size: 400% 100%;
@@ -227,25 +231,6 @@ button {
 /* =========================
    RAINBOW TEXT STATIC
    ========================= */
-
-.rainbow2 {
-    background: linear-gradient(
-        90deg,
-        red,
-        orange,
-        yellow,
-        green,
-        cyan,
-        blue,
-        violet
-    );
-
-    background-size: 100% 100%;
-
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
 
 .animelist {
   width: 200px;
@@ -303,7 +288,7 @@ button {
   font-size: 16px;
   background: #111;
   color: white;
-  border: 2px solid cyan;
+  border: 2px solid rgb(22, 181, 255);
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;

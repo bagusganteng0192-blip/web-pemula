@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta name="google-site-verification" content="XxNkmpCZ2MTNbfzQEmnPQ7Uws5Wwrry1TvNeOCDQowg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Belajar Bikin Website</title>
-    <link loading="lazy" rel="icon" type="image/jpg" href="favicon.jpg">
+    <link rel="icon" type="image/jpg" href="favicon.jpg">
     <link rel="stylesheet" href="style.css">
         <video playsinline loop id="uppervideo" class="headvideo">
             <source preload="auto" src="uppervideo.mp4" class="char">
         </video>
 <div class="bg-rainbow" id="rainbowBG"></div>
 <div class="container">
-    <h2 id="listweb"></h2>
+    
     <body>
+        <h2 id="listweb"></h2>
         <p>play/pause video diatas ⬆</p>
-        <button id="tombolronova" class="mute">pause</button>
+        <button id="tombolronova" class="mute:hover">pause</button>
 <script>
 const videoUpper = document.getElementById("uppervideo");
 const tombolVideo = document.getElementById("tombolronova");
@@ -41,6 +42,7 @@ videoUpper.addEventListener("pause", updateTombolVideo);
 updateTombolVideo();
 </script>
         <h2 class="rainbow"> copyright: HoYoLAB and HoYoverse</h2>
+        <div>
 <audio id="bgm" loop>
     <source preload="auto" src="backsound for web.mp3" type="audio/mp3">
 </audio>
@@ -66,6 +68,7 @@ function setVolume(value) {
     bgm.volume = value / 200;
 }
 </script>
+        </div>
 <div class="bg-rainbow" id="rainbowBG"></div>
         <h1 class="rainbow">WELCOME TO MY WEBSITE</h1>                                  
         <h1 class="rainbow"> <strong>JIKA KALIAN MALAS UNTUK SCROLL<br> KLIK INI AJA</strong></h1></a> <h2 id="listweb"></h2>
@@ -124,7 +127,8 @@ function setVolume(value) {
     <source src="list waifu/miwa video list.mp4" type="video/mp4">
 </video>
 <p>cr: Yonaaa✰</p>
-<p></p>
+<br>
+<a href="#listweb"><mark>Kembali Ke List</mark></a>
 </details>
 <h2 id="preset am"></h2>
 
@@ -133,9 +137,7 @@ function setVolume(value) {
     <summary class="mute"><a>👉"CLICK HERE"👈</a></summary>
     <h2>something is wrong</h2>
 </details>
-<br></br>
 <h2 id="jj genshin"></h2>
-
     <h1 class="rainbow"> kumpulan jj anime random</h1>
     <details>
         <summary class="mute"><a>👉"CLICK HERE"👈</a></summary>
@@ -268,11 +270,10 @@ function setVolume(value) {
         <source src="anime random13.mp4" type="video/mp4">
     </video>
     <h2>cr: Niko 𝖋𝖙 𝐍𝐂𝐀᭄</h2>
+    <br>
+    <a href="#listweb"><mark>Kembali Ke List</mark></a>
     </details>
-    
     <h2 id="valorant"></h2>
-
-<br></br>
 <h1 class="rainbow"> kumpulan jj genshin impact edit</h1>
 <h2 id="test sinyal"></h2>
 <details>
@@ -452,6 +453,8 @@ picture-in-picture"
 allowfullscreen preload="none">
 </iframe>
 <h2>cr: HoYoverse</h2>
+<br>
+<a href="#listweb"><mark>Kembali Ke List</mark></a>
 </details>
 <p></p>
 <h1 class="rainbow"> valorant edit</h1>
@@ -492,6 +495,8 @@ poster="valorant foto5.png">
     <source src="valorant5.mp4" type="video/mp4">
 </video>
 <h2>cr: lu1zinznx</h2>
+<br>
+<a href="#listweb"><mark>Kembali Ke List</mark></a>
 </details>
 <p></p>
 <br>
@@ -635,11 +640,9 @@ width="350px"
 preload="none">
     <source src="test sinyal video15.mp4" type="video/mp4">
 </video> <h2>cr: Bawek Dewak</h2>
+<br>
+<a href="#listweb"><mark>Kembali Ke List</mark></a>
 </details>
-<p></p>
-
-
-    <br>
     <h1 class="rainbow">4  Heavenly Queen</h1>
     <details>
         <summary class="mute"><a>👉"CLICK HERE"👈</a></summary>
@@ -700,6 +703,8 @@ controls width="350px" preload="none">
         <source src="heavenly queen/video 4 queen9.mp4" type="video/mp4">
 </video>
 <h2>cr: wibupkl</h2>
+<br>
+<a href="#listweb"><mark>Kembali Ke List</mark></a>
 </details>
 <h1 class="rainbow"><del>Video 18+</del></h1>
 <p>sorry i must hidden this tuf</p>
@@ -751,7 +756,7 @@ controls width="350px" preload="none">
         <h1 class="box">POWER BY<br> VICARBAGUS</h1>
     </footer>
 <br></br>
-        <a href="#listweb"><h1><strong> kembali ke list </strong></h1> 
+        <a href="#uppervideo"><h1><strong> kembali ke atas </strong></h1> 
             <img loading="lazy" src="tanda panah ke atas.png"></br>
         </div>
 <script>
@@ -778,13 +783,6 @@ videos.forEach(video => {
     });
 });
 </script>
-
-</script>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<title>My Website</title>
 
 <style>
 body {
@@ -990,6 +988,6 @@ videos.forEach(video => {
         <h2 id="my training web"></h2>
 <p></p>
         <a href="latihan.html">Klik disini</a>
-       <script src="script.js" defer></script>
+       <script defer src="script.js"></script>
     </body>
 </head>

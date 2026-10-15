@@ -23,5 +23,25 @@
     });
 </script>
 <p>Tekan <kbd>Ctrl</kbd> + <kbd>S</kbd> untuk download</p>
+
+<h2>Informasi Perangkat</h2>
+
+<button id="cekPerangkat">Cek Perangkat</button>
+
+<pre id="hasilPerangkat"></pre>
+
+<script>
+document.getElementById("cekPerangkat").addEventListener("click", () => {
+  const hasil = document.getElementById("hasilPerangkat");
+
+  hasil.textContent =
+    "Ukuran layar: " + screen.width + " × " + screen.height + "\n" +
+    "Ukuran halaman: " + innerWidth + " × " + innerHeight + "\n" +
+    "Bahasa browser: " + navigator.language + "\n" +
+    "Platform browser: " + (navigator.userAgentData?.platform || navigator.platform || "Tidak diketahui") + "\n" +
+    "Jumlah logical CPU: " + (navigator.hardwareConcurrency || "Tidak diketahui");
+});
+</script>
+
     </body>
 </html>

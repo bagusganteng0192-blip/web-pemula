@@ -7,13 +7,13 @@
     <title>Belajar Bikin Website</title>
     <link rel="icon" type="image/jpg" href="favicon.ico">
     <link rel="stylesheet" href="style.css">
-        <video playsinline loop id="uppervideo" class="headvideo">
+</head>
+    <body>
+                <video playsinline loop id="uppervideo" class="headvideo">
             <source preload="auto" src="uppervideo.mp4" class="char">
         </video>
 <div class="bg-rainbow" id="rainbowBG"></div>
 <div class="container">
-    
-    <body>
         <h2 id="listweb"></h2>
         <p>play/pause video diatas ⬆</p>
         <button id="tombolronova" class="mute:hover">pause</button>
@@ -40,34 +40,137 @@ videoUpper.addEventListener("pause", updateTombolVideo);
 
 updateTombolVideo();
 </script>
-        <h2 class="rainbow"> copyright: HoYoLAB and HoYoverse</h2>
-        <div>
-<audio id="bgm" loop>
-    <source preload="auto" src="backsound for web.mp3" type="audio/mp3">
-</audio>
-<button class="mute" onclick="toggleMusic()">▶ Play Music</button>
-<br>
-<label class="rainbow">Volume</label><br>
-<input class="vol" type="range" min="0" max="100" value="70" oninput="setVolume(this.value)">
-<script>
-    const bgm = document.getElementById('bgm');
-const muteButton = document.querySelector('.mute');
+<h2 class="rainbow"> copyright: HoYoLAB and HoYoverse</h2>
+<div class="music-player">
 
-function toggleMusic() {
-    if (bgm.paused) {
-        bgm.play();
-        muteButton.textContent = '🔊 Mute Music';
-    } else {
-        bgm.pause();
-        muteButton.textContent = '▶ Play Music';
-    }
-}
+    <h3 id="judulLagu">Lagu pertama</h3>
 
-function setVolume(value) {
-    bgm.volume = value / 200;
-}
-</script>
-        </div>
+    <audio id="bgm" preload="none">
+        Browser kamu tidak mendukung audio.
+    </audio>
+
+    <!-- Tombol navigasi lagu -->
+    <div class="kontrol-musik">
+        <button type="button" onclick="laguSebelumnya()">
+            ⏮ Sebelumnya
+        </button>
+
+        <button type="button" onclick="laguBerikutnya()">
+            Berikutnya ⏭
+        </button>
+    </div>
+
+    <!-- Tombol Play di tengah bawah -->
+    <button
+        id="tombolMusik"
+        type="button"
+        onclick="toggleMusic()"
+    >
+        ▶ Play Music
+    </button>
+
+    <br>
+
+    <label for="volumeMusik">Volume</label>
+    <br>
+
+    <input
+        id="volumeMusik"
+        class="vol"
+        type="range"
+        min="0"
+        max="100"
+        value="70"
+        oninput="setVolume(this.value)"
+    >
+
+    <script>
+        const bgm = document.getElementById("bgm");
+        const judulLagu = document.getElementById("judulLagu");
+        const tombolMusik = document.getElementById("tombolMusik");
+
+        // Daftar lagu
+        const daftarLagu = [
+            {
+                judul: "Lullaby of the New Moon",
+                file: "backsound for web.mp3"
+            },
+            {
+                judul: "Wind Bless on you",
+                file: "backsound web via genshin.mp3"
+            },
+            {
+                judul: "Vodyanitsa Perform: Everwinter Without Mercy",
+                file: "backsound vodyanitsa.mp3"
+            }
+        ];
+
+        let laguSekarang = 0;
+
+        // Memilih dan mengganti lagu
+        function pilihLagu(index, putar = true) {
+            laguSekarang =
+                (index + daftarLagu.length) % daftarLagu.length;
+
+            bgm.src = daftarLagu[laguSekarang].file;
+            judulLagu.textContent = daftarLagu[laguSekarang].judul;
+
+            if (putar) {
+                bgm.play()
+                    .then(() => {
+                        tombolMusik.textContent = "⏸ Pause Music";
+                    })
+                    .catch(error => {
+                        console.log("Lagu gagal diputar:", error);
+                        tombolMusik.textContent = "▶ Play Music";
+                    });
+            } else {
+                bgm.pause();
+                tombolMusik.textContent = "▶ Play Music";
+            }
+        }
+
+        // Play dan Pause
+        function toggleMusic() {
+            if (bgm.paused) {
+                bgm.play()
+                    .then(() => {
+                        tombolMusik.textContent = "⏸ Pause Music";
+                    })
+                    .catch(error => {
+                        console.log("Lagu gagal diputar:", error);
+                    });
+            } else {
+                bgm.pause();
+                tombolMusik.textContent = "▶ Play Music";
+            }
+        }
+
+        // Lagu berikutnya
+        function laguBerikutnya() {
+            pilihLagu(laguSekarang + 1);
+        }
+
+        // Lagu sebelumnya
+        function laguSebelumnya() {
+            pilihLagu(laguSekarang - 1);
+        }
+
+        // Volume 0 sampai 100%
+        function setVolume(value) {
+            bgm.volume = Number(value) / 100;
+        }
+
+        // Otomatis lanjut ketika lagu selesai
+        bgm.addEventListener("ended", laguBerikutnya);
+
+        // Pengaturan awal
+        setVolume(document.getElementById("volumeMusik").value);
+        pilihLagu(0, false);
+    </script>
+
+</div>
+        
 <div class="bg-rainbow" id="rainbowBG"></div>
         <h1 class="rainbow">WELCOME TO MY WEBSITE</h1>                                  
         <h1 class="rainbow"> <strong>JIKA KALIAN MALAS UNTUK SCROLL<br> KLIK INI AJA</strong></h1></a> <h2 id="listweb"></h2>
@@ -844,7 +947,7 @@ controls width="350px" preload="none">
 const videos = document.querySelectorAll("video");
 document.addEventListener("DOMContentLoaded", () => {
     videos.forEach(video => {
-        video.volume = 0.15; // Set default volume to 20%
+        video.volume = 0.10; // Set default volume to 10%
     });
 });
 

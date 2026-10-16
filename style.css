@@ -384,3 +384,115 @@ button {
 .form button:hover {
   background: #cccccc;
 }
+/* ===== MUSIC PLAYER ===== */
+
+.music-player {
+    width: min(90%, 420px);
+    margin: 25px auto;
+    padding: 22px;
+    box-sizing: border-box;
+
+    background: rgba(25, 25, 30, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    text-align: center;
+    color: white;
+}
+
+/* Judul lagu */
+#judulLagu {
+    margin: 0 0 18px;
+    font-size: 20px;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+
+    background: linear-gradient(
+        90deg,
+        #66eaff,
+        #c58bff,
+        #ff8bd8
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Semua tombol player */
+.music-player button {
+    padding: 10px 15px;
+    margin: 5px 3px;
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+
+    background: #292932;
+    color: white;
+
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+/* Efek saat tombol disentuh atau diarahkan */
+.music-player button:hover {
+    background: #414157;
+    border-color: #a98bff;
+    transform: translateY(-2px);
+}
+
+.music-player button:active {
+    transform: scale(0.96);
+}
+
+/* Tombol play dibuat lebih menonjol */
+#tombolMusik {
+    background: linear-gradient(110deg, #6655cc, #a44ed1);
+    border: none;
+    min-width: 140px;
+}
+
+#tombolMusik:hover {
+    background: linear-gradient(110deg, #7968e8, #bd61eb);
+}
+
+/* Label volume */
+.music-player label {
+    display: inline-block;
+    margin-top: 14px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* Slider volume */
+#volumeMusik {
+    display: block;
+    width: 85%;
+    margin: 0 auto 5px;
+    accent-color: #b58aff;
+    cursor: pointer;
+}
+
+/* Tampilan di HP */
+@media (max-width: 480px) {
+    .music-player {
+        width: 92%;
+        padding: 17px 12px;
+    }
+
+    .music-player button {
+        padding: 10px 11px;
+        font-size: 13px;
+    }
+
+    #judulLagu {
+        font-size: 18px;
+    }
+}

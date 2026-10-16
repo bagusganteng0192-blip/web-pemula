@@ -100,32 +100,32 @@ function setVolume(value) {
 <details>
     <summary class="mute"><a>👉"CLICK HERE"👈</a></summary>
 <h1 class="rainbow">no.1 <br>Alya</h1 class="animelist" ></a>
-<video class="media-glow" controls width="250px" preload="none" loading="lazy" poster="list waifu/alya list1.png">
+<video class="media-glow" controls width="350px" preload="none" loading="lazy" poster="list waifu/alya list1.png">
     <source src="list waifu/alya video list.mp4" type="video/mp4">
 </video>
 <p>cr: 𝐑𝐲 𝐟𝐭 𝐀𝐋𝐅〆𝐘𝐋 𝐊𝐆𝐍</p>
 <details><summary>komentar</summary><p>ini adalah komentar untuk Alya</p></details>
 <br>
 <h1 class="rainbow">no.2 <br>Waguri</h1 class="animelist"></a>
-<video class="media-glow" controls width="250px" preload="none" poster="list waifu/waguri list2.png">
+<video class="media-glow" controls width="350px" preload="none" poster="list waifu/waguri list2.png">
     <source src="list waifu/waguri video list.mp4" type="video/mp4">
 </video>
 <p>cr: Yonaaa✰</p>
 <br>
 <h1 class="rainbow">no.3 <br>Kurumi</h1 class="animelist"></a>
-<video class="media-glow" controls width="250px" preload="none" poster="list waifu/kurumi list3.png">
+<video class="media-glow" controls width="350px" preload="none" poster="list waifu/kurumi list3.png">
     <source src="list waifu/kurumi video list.mp4" type="video/mp4">
 </video>
 <p>cr: FazzA6`</p>
 <br>
 <h1 class="rainbow">no.4 <br>Elaina</h1 class="animelist"></a>
-<video class="media-glow" controls width="250px" preload="none" loading="lazy" poster="list waifu/elaina list4.png">
+<video class="media-glow" controls width="350px" preload="none" loading="lazy" poster="list waifu/elaina list4.png">
     <source src="list waifu/elaina video list.mp4" type="video/mp4">
 </video>
 <p>cr: — Kᴇʟᴠɪɴ 友</p>
 <br>
 <h1 class="rainbow">no.5 <br>Miwa</h1 class="animelist"></a>
-<video class="media-glow" controls width="250px" preload="none" loading="lazy" poster="list waifu/miwa list5.png">
+<video class="media-glow" controls width="350px" preload="none" loading="lazy" poster="list waifu/miwa list5.png">
     <source src="list waifu/miwa video list.mp4" type="video/mp4">
 </video>
 <p>cr: Yonaaa✰</p>
@@ -450,7 +450,8 @@ preload="none">
 </video>
 <h2>cr: Yuuki</h2>
 <iframe class="media-glow" 
-width="320px"
+Access-Control-Allow-Origin
+width="340px"
 height="180px"
 preloading="metadata" 
 loading="lazy"
@@ -828,9 +829,11 @@ controls width="350px" preload="none">
         <h1 class="box">POWER BY<br> VICARBAGUS</h1>
     </footer>
 <br></br>
+    <div>
         <a href="#uppervideo"><h1><strong> kembali ke atas </strong></h1> 
             <img loading="lazy" src="tanda panah ke atas.png"></br>
         </div>
+        <a class="box2" href="form.html">Klik disini</a>
 <script>
   window.si = window.si || function () {
     (window.si.q = window.si.q || []).push(arguments);
@@ -1059,7 +1062,7 @@ videos.forEach(video => {
 </script>
         <h2 id="masukan"></h2>
 <p></p>
-        <a class="box2" href="form.html">Klik disini</a>
+        
        <script defer src="script.js"></script>
        <section class="form">
   <h2>Kotak Saran</h2>
@@ -1068,11 +1071,11 @@ videos.forEach(video => {
   <form action="https://formspree.io/f/mjygjbvw"
         method="POST">
 
-    <label for="nama">Nama (opsional)</label>
-    <input type="text" id="nama" name="nama">
-
+    <label for="nama">Nama (Wajib)</label>
+    <input type="text" id="nama" name="nama" required="true">
+    
     <label for="saran">Saran kamu</label>
-    <textarea id="saran" name="saran" placeholder="jika form tidak bekerja dengan benar, silahkan kunjungi halaman external untuk memberi saran"
+    <textarea id="saran" name="saran" aria-required="true" placeholder="jika form tidak bekerja dengan benar, silahkan kunjungi halaman external untuk memberi saran"
               rows="5" maxlength="1000"
               required></textarea>
 

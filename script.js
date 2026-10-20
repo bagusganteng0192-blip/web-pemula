@@ -1,2 +1,1 @@
-console.log("dont DDOS my site please");  
-navigator.gpu.requestAdapter();
+console.log("anjayyy mabar")

@@ -496,3 +496,104 @@ button {
         font-size: 18px;
     }
 }
+
+
+/* Upload foto */
+#pilihGambar {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  margin: 18px 0;
+  padding: 12px;
+  border: 1px solid #d8d8d8;
+  border-radius: 8px;
+  background: #fafafa;
+  color: #333;
+  font: inherit;
+  font-size: 14px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+#pilihGambar:hover {
+  border-color: #888;
+}
+
+#pilihGambar:focus-visible {
+  outline: 2px solid #333;
+  outline-offset: 3px;
+}
+
+/* Preview foto */
+#previewGambar {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 340px;
+  margin: 20px 0 12px;
+  border-radius: 6px;
+  object-fit: contain;
+  background: #f2f2f2;
+}
+
+#previewGambar[hidden] {
+  display: none;
+}
+
+/* Nama file */
+#namaFile {
+  max-width: 360px;
+  margin: 8px 0 16px;
+  color: #777;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+/* Tombol upload */
+#tombolUpload {
+  padding: 12px 22px;
+  border: 1px solid #222;
+  border-radius: 6px;
+  background: #222;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+#tombolUpload:hover:not(:disabled) {
+  background: #444;
+  border-color: #444;
+}
+
+#tombolUpload:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+#tombolUpload:disabled {
+  background: #e5e5e5;
+  border-color: #e5e5e5;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* Status upload */
+#statusUpload {
+  max-width: 360px;
+  margin-top: 14px;
+  color: #666;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #tombolUpload {
+    transition: none;
+  }
+}

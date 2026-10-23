@@ -19,6 +19,14 @@ body {
   position: relative;
 }
 
+video[controls] {
+    width: 90%;
+    max-width: 900px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+}
+
 /* IMAGE DI ATAS WEB */
 .top-image {
   height: 100vh;              /* atur tinggi image */
@@ -174,13 +182,13 @@ button {
 
     background: linear-gradient(
         90deg,
-        #ff0000 0%,
-        #ffffff 15%,
+        #000000 0%,
+        #000000 15%,
         #202020 35%,
         #000000 50%,
-        #202020 65%,
-        #ffffff 85%,
-        #ff0000 100%
+        #000000 65%,
+        #000000 85%,
+        #000000 100%
     );
 
     z-index: -1;
@@ -597,3 +605,10 @@ button {
     transition: none;
   }
 }
+
+
+.navbar-menu a:hover {
+    color: #16b5ff;
+}
+
+

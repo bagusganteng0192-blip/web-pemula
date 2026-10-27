@@ -1,6 +1,3 @@
-day = "minggu"
-
-if day == "senin" or "saptu":
-    print("Hari ini adalah hari kerja.")
-else:       
-    print("Hari ini adalah hari libur.")
+import qrcode
+img = qrcode.make("https://web-pemula.pages.dev/")
+img.save("website ku.png")

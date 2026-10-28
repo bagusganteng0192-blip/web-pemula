@@ -1,0 +1,1219 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pengenalan jurusan Teknik Komputer dan Jaringan untuk siswa kelas X SMK.">
+  <title>Explore KELAS 10 TKJ</title>
+
+  <style>
+    :root {
+      --bg: #080d18;
+      --card: #111a2b;
+      --blue: #38bdf8;
+      --text: #f1f5f9;
+      --muted: #9caec5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    /* NAVBAR */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 13, 24, 0.92);
+      border-bottom: 1px solid #243047;
+      backdrop-filter: blur(12px);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: var(--blue);
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .menu-btn {
+      display: none;
+      color: white;
+      background: transparent;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 7px 12px;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 590px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 80% 35%,
+          rgba(14, 165, 233, 0.15), transparent 45%);
+    }
+
+    .hero-content {
+      max-width: 760px;
+      padding: 100px 0;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      font-weight: bold;
+      letter-spacing: 2px;
+      font-size: 0.85rem;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.8rem);
+      line-height: 1.12;
+      margin: 18px 0;
+    }
+
+    .gradient-text {
+      color: var(--blue);
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 620px;
+      font-size: 1.05rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 9px;
+      font-weight: bold;
+      border: 1px solid var(--blue);
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #06111d;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      color: var(--blue);
+    }
+
+    /* SECTION */
+    section {
+      padding: 85px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 45px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      margin-bottom: 12px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .about-copy h3 {
+      font-size: 1.7rem;
+      margin-bottom: 15px;
+    }
+
+    .about-copy p {
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+
+    .terminal {
+      background: #050912;
+      border: 1px solid #26364d;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .terminal-bar {
+      background: #162136;
+      padding: 12px 16px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .terminal-content {
+      padding: 25px;
+      font-family: Consolas, monospace;
+      overflow-wrap: anywhere;
+    }
+
+    .terminal-content p {
+      margin: 8px 0;
+      color: #a7f3d0;
+    }
+
+    .terminal-content .comment {
+      color: #7186a4;
+    }
+
+    /* MATERI */
+    .topics {
+      background: #0c1322;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .topic-card {
+      padding: 25px;
+      border-radius: 14px;
+      border: 1px solid #26364d;
+      background: var(--card);
+      transition: transform 0.25s, border-color 0.25s;
+    }
+
+    .topic-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--blue);
+    }
+
+    .topic-icon {
+      font-size: 2rem;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+
+    .topic-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .topic-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* SKILL */
+    .skill-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .skill {
+      display: flex;
+      gap: 12px;
+      padding: 18px;
+      background: var(--card);
+      border: 1px solid #26364d;
+      border-radius: 10px;
+    }
+
+    .check {
+      color: var(--blue);
+      font-weight: bold;
+    }
+
+    /* FAQ */
+    .faq-list {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #26364d;
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 20px 0;
+      background: none;
+      color: var(--text);
+      border: none;
+      text-align: left;
+      font-size: 1rem;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      cursor: pointer;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 0 20px;
+      color: var(--muted);
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    .faq-question span {
+      color: var(--blue);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 30px 0;
+      border-top: 1px solid #26364d;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ANIMASI */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 760px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        padding: 20px 5%;
+        background: #0c1322;
+        border-bottom: 1px solid #26364d;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-content {
+        padding: 85px 0;
+      }
+
+      .about-grid,
+      .card-grid,
+      .skill-list {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+    }
+
+
+/* ALBUM KENANGAN */
+.memories {
+  background:
+    radial-gradient(ellipse at 50% 0%,
+      rgba(56, 189, 248, 0.08), transparent 55%),
+    #080d18;
+  border-top: 1px solid #1e2c42;
+}
+
+.memory-grid {
+  columns: 3;
+  column-gap: 18px;
+}
+
+.memory-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0 0 18px;
+  padding: 0;
+  overflow: hidden;
+  break-inside: avoid;
+  border: 1px solid #26364d;
+  border-radius: 13px;
+  background: #111a2b;
+  cursor: pointer;
+  text-align: left;
+}
+
+.memory-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 160px;
+  object-fit: cover;
+  transition: transform 0.35s;
+}
+
+/* Variasi tinggi foto */
+.memory-card.tall img {
+  aspect-ratio: 3 / 4;
+}
+
+.memory-card.medium img {
+  aspect-ratio: 4 / 3;
+}
+
+.memory-card.short img {
+  aspect-ratio: 5 / 3;
+}
+
+.memory-card:hover {
+  border-color: #38bdf8;
+}
+
+.memory-card:hover img {
+  transform: scale(1.04);
+}
+
+.memory-caption {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 35px 14px 14px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+  background: linear-gradient(transparent, rgba(3, 8, 18, 0.9));
+  pointer-events: none;
+}
+
+.album-note {
+  margin-top: 30px;
+  text-align: center;
+  color: #7186a4;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+/* POPUP FOTO */
+.memory-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+  padding: 55px 20px 25px;
+  background: rgba(3, 7, 15, 0.96);
+}
+
+.memory-lightbox.open {
+  display: flex;
+}
+
+.memory-lightbox img {
+  max-width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  border: 1px solid #26364d;
+  border-radius: 10px;
+}
+
+.memory-lightbox p {
+  color: #cbd5e1;
+  text-align: center;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 15px;
+  right: 22px;
+  color: white;
+  background: transparent;
+  border: 0;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .memory-grid {
+    columns: 2;
+    column-gap: 12px;
+  }
+
+  .memory-card {
+    margin-bottom: 12px;
+    border-radius: 9px;
+  }
+
+  .memory-caption {
+    padding: 25px 9px 9px;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .memory-grid {
+    columns: 1;
+  }
+}
+
+
+.music-player {
+    background: rgba(25, 25, 30, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 18px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    text-align: center;
+    color: white;
+}
+
+/* Judul lagu */
+#judulLagu {
+    margin: 0 0 18px;
+    font-size: 20px;
+    font-weight: bold;
+    overflow-wrap: anywhere;
+
+    background: linear-gradient(
+        90deg,
+        #66eaff,
+        #c58bff,
+        #ff8bd8
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Semua tombol player */
+.music-player button {
+    padding: 10px 15px;
+    margin: 5px 3px;
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+
+    background: #292932;
+    color: white;
+
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+/* Efek saat tombol disentuh atau diarahkan */
+.music-player button:hover {
+    background: #414157;
+    border-color: #a98bff;
+    transform: translateY(-2px);
+}
+
+.music-player button:active {
+    transform: scale(0.96);
+}
+
+/* Tombol play dibuat lebih menonjol */
+#tombolMusik {
+    background: linear-gradient(110deg, #14131a, #0b60c2);
+    border: none;
+    min-width: 140px;
+}
+
+#tombolMusik:hover {
+    background: linear-gradient(110deg, #14131a, #0b60c2);
+}
+
+/* Label volume */
+.music-player label {
+    display: inline-block;
+    margin-top: 14px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* Slider volume */
+#volumeMusik {
+    display: block;
+    width: 85%;
+    margin: 0 auto 5px;
+    accent-color: #b58aff;
+    cursor: pointer;
+}
+
+/* Tampilan di HP */
+@media (max-width: 480px) {
+    .music-player {
+        width: 92%;
+        padding: 17px 12px;
+    }
+
+    .music-player button {
+        padding: 10px 11px;
+        font-size: 13px;
+    }
+
+    #judulLagu {
+        font-size: 18px;
+    }
+}
+
+  </style>
+</head>
+
+<body>
+    <a id="web tkj"></a>
+  <header>
+    <nav class="container">
+      <a class="logo" href="#home">X-TKJ<span> PRESENT</span></a>
+
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Buka menu navigasi"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Beranda</a></li>
+        <li><a href="#tentang">Tentang TKJ</a></li>
+        <li><a href="#materi">Materi</a></li>
+        <li><a href="#skill">Keterampilan</a></li>
+        <li><a href="#album">Albums</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+<div class="music-player">
+
+    <h3 id="judulLagu">Lagu pertama</h3>
+
+    <audio id="bgm" preload="none">
+        Browser kamu tidak mendukung audio.
+    </audio>
+
+    <!-- Tombol navigasi lagu -->
+    <div class="kontrol-musik">
+        <button type="button" onclick="laguSebelumnya()">
+            ⏮ Sebelumnya
+        </button>
+
+        <button type="button" onclick="laguBerikutnya()">
+            Berikutnya ⏭
+        </button>
+    </div>
+
+    <!-- Tombol Play di tengah bawah -->
+    <button
+        id="tombolMusik"
+        type="button"
+        onclick="toggleMusic()"
+    >
+        ▶ Play Music
+    </button>
+
+    <br>
+
+    <label for="volumeMusik">Volume</label>
+    <br>
+
+    <input
+        id="volumeMusik"
+        class="vol"
+        type="range"
+        min="0"
+        max="100"
+        value="45"
+        oninput="setVolume(this.value)"
+    >
+
+    <script>
+        const bgm = document.getElementById("bgm");
+        const judulLagu = document.getElementById("judulLagu");
+        const tombolMusik = document.getElementById("tombolMusik");
+
+        // Daftar lagu
+        const daftarLagu = [
+            {
+                judul: "Lullaby of the New Moon",
+                file: "backsound for web.mp3"
+            },
+            {
+                judul: "Wind Bless on you",
+                file: "backsound web via genshin.mp3"
+            },
+            {
+                judul: "Get Out Here",
+                file: "backsound get out here.mpeg"
+            },
+            {
+                 judul: "Halvorsen Sunrise",
+                 file: "Halvorsen_Sunrise.mpeg"
+
+            },
+            {
+                judul: "In Your Head",
+                file: "InYourHead.mp3"
+            },
+            {
+                judul: "giants",
+                file: "giants.mpeg"
+            },
+            {
+                judul: "Love For You",
+                file: "love for you.mp3"
+            },
+        ];
+
+        let laguSekarang = 0;
+
+        // Memilih dan mengganti lagu
+        function pilihLagu(index, putar = true) {
+            laguSekarang =
+                (index + daftarLagu.length) % daftarLagu.length;
+
+            bgm.src = daftarLagu[laguSekarang].file;
+            judulLagu.textContent = daftarLagu[laguSekarang].judul;
+
+            if (putar) {
+                bgm.play()
+                    .then(() => {
+                        tombolMusik.textContent = "⏸ Pause Music";
+                    })
+                    .catch(error => {
+                        console.log("Lagu gagal diputar:", error);
+                        tombolMusik.textContent = "▶ Play Music";
+                    });
+            } else {
+                bgm.pause();
+                tombolMusik.textContent = "▶ Play Music";
+            }
+        }
+
+        // Play dan Pause
+        function toggleMusic() {
+            if (bgm.paused) {
+                bgm.play()
+                    .then(() => {
+                        tombolMusik.textContent = "⏸ Pause Music";
+                    })
+                    .catch(error => {
+                        console.log("Lagu gagal diputar:", error);
+                    });
+            } else {
+                bgm.pause();
+                tombolMusik.textContent = "▶ Play Music";
+            }
+        }
+
+        // Lagu berikutnya
+        function laguBerikutnya() {
+            pilihLagu(laguSekarang + 1);
+        }
+
+        // Lagu sebelumnya
+        function laguSebelumnya() {
+            pilihLagu(laguSekarang - 1);
+        }
+
+        // Volume 0 sampai 100%
+        function setVolume(value) {
+            bgm.volume = Number(value) / 100;
+        }
+
+        // Otomatis lanjut ketika lagu selesai
+        bgm.addEventListener("ended", laguBerikutnya);
+
+        // Pengaturan awal
+        setVolume(document.getElementById("volumeMusik").value);
+        pilihLagu(0, false);
+    </script>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content reveal">
+          <div class="eyebrow">SMKM 1 PURWOASRI • KELAS X-TKJ</div>
+          <h1>
+            Kenali Dunia<br>
+            <span class="gradient-text">Teknik Komputer</span><br>
+            dan Jaringan.
+          </h1>
+          <p>
+            Selamat datang di dunia TKJ! Kenali perangkat komputer,
+            jaringan, sistem operasi, dan dasar pemrograman sebagai
+            langkah awal perjalananmu di bidang teknologi.
+          </p>
+
+          <div class="buttons">
+            <a href="#tentang" class="btn btn-primary">Mulai Jelajahi</a>
+            <a href="#materi" class="btn btn-outline">Lihat Materi</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tentang">
+      <div class="container about-grid">
+        <div class="about-copy reveal">
+          <div class="eyebrow">APA ITU TKJ?</div>
+          <h3>Belajar bagaimana komputer dan jaringan bekerja.</h3>
+          <p>
+            Teknik Komputer dan Jaringan (TKJ) adalah bidang pendidikan
+            yang mempelajari komputer, perangkat keras, jaringan komputer,
+            sistem operasi, serta cara merawat dan mengonfigurasi sistem.
+          </p>
+          <p>
+            Di kelas X, kamu bisa mulai membangun dasar teknis sekaligus
+            melatih logika untuk memecahkan masalah.
+          </p>
+        </div>
+
+        <div class="terminal reveal">
+          <div class="terminal-bar">VicarBagus: </div>
+          <div class="terminal-content">
+            <p class="comment">// Perjalanan siswa TKJ</p>
+            <p>Belajar hardware Dan Software...</p>
+            <p>Memahami cara Kerja networking...</p>
+            <p>Menjelajahi Dunia coding...</p>
+            <p>Siap memecahkan masalah!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="topics" id="materi">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">MATERI DASAR</div>
+          <h2>Apa yang Dipelajari?</h2>
+          <p>
+            Beberapa bidang yang dapat kamu kenali selama belajar
+            Teknik Komputer dan Jaringan.
+          </p>
+        </div>
+
+        <div class="card-grid">
+          <article class="topic-card reveal">
+            <div class="topic-icon">▣</div>
+            <h3>Hardware</h3>
+            <p>
+              Mengenal CPU, RAM, motherboard, penyimpanan, dan
+              komponen yang membuat komputer bekerja.
+            </p>
+          </article>
+
+          <article class="topic-card reveal">
+            <div class="topic-icon">⌘</div>
+            <h3>Jaringan Komputer</h3>
+            <p>
+              Memahami IP address, router, switch, DNS, serta
+              cara perangkat saling terhubung.
+            </p>
+          </article>
+
+          <article class="topic-card reveal">
+            <div class="topic-icon">$_</div>
+            <h3>Sistem Operasi</h3>
+            <p>
+              Mengenal Windows, Linux, manajemen file, terminal,
+              dan konfigurasi sistem.
+            </p>
+          </article>
+
+          <article class="topic-card reveal">
+            <div class="topic-icon">&lt;/&gt;</div>
+            <h3>Pemrograman</h3>
+            <p>
+              Melatih algoritma, variabel, percabangan, perulangan,
+              serta dasar bahasa pemrograman.
+            </p>
+          </article>
+
+          <article class="topic-card reveal">
+            <div class="topic-icon">⌁</div>
+            <h3>Web Dasar</h3>
+            <p>
+              Mengenal HTML, CSS, dan JavaScript untuk membuat
+              halaman web interaktif.
+            </p>
+          </article>
+
+          <article class="topic-card reveal">
+            <div class="topic-icon">⚙</div>
+            <h3>Troubleshooting</h3>
+            <p>
+              Belajar menemukan penyebab masalah komputer dan
+              jaringan secara runtut dan sistematis.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skill">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">BEKAL BELAJAR</div>
+          <h2>Keterampilan yang Dibangun</h2>
+          <p>
+            Bukan cuma menghafal istilah, tetapi juga belajar
+            memahami cara kerja dan menyelesaikan masalah.
+          </p>
+        </div>
+
+        <div class="skill-list">
+          <div class="skill reveal">
+            <span class="check">✓</span>
+            <span>Memahami komponen komputer</span>
+          </div>
+          <div class="skill reveal">
+            <span class="check">✓</span>
+            <span>Mengerti konsep jaringan dasar</span>
+          </div>
+          <div class="skill reveal">
+            <span class="check">✓</span>
+            <span>Melatih logika dan algoritma</span>
+          </div>
+          <div class="skill reveal">
+            <span class="check">✓</span>
+            <span>Menganalisis masalah teknis</span>
+          </div>
+          <div class="skill reveal">
+            <span class="check">✓</span>
+            <span>Menggunakan tools komputer</span>
+          </div>
+          <div class="skill reveal">
+            <span class="check">✓</span>
+            <span>Membuat proyek teknologi sederhana</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="topics" id="faq">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="eyebrow">PERTANYAAN UMUM</div>
+          <h2>Masih Penasaran?</h2>
+          <p>Beberapa pertanyaan yang sering muncul saat mulai belajar TKJ.</p>
+        </div>
+
+        <div class="faq-list reveal">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Apakah harus bisa coding sebelum masuk TKJ?
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              Tidak harus. Kamu bisa mulai dari dasar dan belajar
+              pemrograman secara bertahap.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Apakah TKJ hanya belajar memperbaiki komputer?
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              Tidak. TKJ juga berkaitan dengan jaringan, sistem operasi,
+              konfigurasi perangkat, keamanan dasar, dan troubleshooting.
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Apakah algoritma berguna untuk anak TKJ?
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              Ya. Algoritma membantu menyusun langkah pemecahan masalah,
+              termasuk saat membuat program dan menganalisis gangguan teknis.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section class="memories">
+  <div class="container">
+    <div class="section-heading">
+        <h2 id="album"></h2>
+      <div class="eyebrow">OUR JOURNEY • X TKJ</div>
+      <h2>Every Picture Has a Story.</h2>
+      <p>
+        Kumpulan momen, cerita, dan kenangan yang menjadi bagian
+        dari perjalanan kita di kelas X TKJ.
+      </p>
+    </div>
+
+    <div class="memory-grid">
+      <button class="memory-card tall" data-caption="A moment to remember">
+        <img src="foto1.jpeg" alt="Kenangan kelas X TKJ" loading="lazy">
+        <span class="memory-caption">A moment to remember</span>
+      </button>
+
+      <button class="memory-card short" data-caption="Together as one">
+        <img src="foto2.webp" alt="Kebersamaan teman sekelas" loading="lazy">
+        <span class="memory-caption">Together as one</span>
+      </button>
+
+      <button class="memory-card medium" data-caption="Classroom stories">
+        <img src="foto3.jpg" alt="Momen di kelas" loading="lazy">
+        <span class="memory-caption">Classroom stories</span>
+      </button>
+
+      <button class="memory-card tall" data-caption="Unforgettable days">
+        <img src="foto4.jpg" alt="Hari yang berkesan" loading="lazy">
+        <span class="memory-caption">Unforgettable days</span>
+      </button>
+
+      <button class="memory-card medium" data-caption="Our little memories">
+        <img src="foto5.jpg" alt="Kenangan bersama teman" loading="lazy">
+        <span class="memory-caption">Our little memories</span>
+      </button>
+
+      <button class="memory-card short" data-caption="The days we shared">
+        <img src="foto6.jpg" alt="Kegiatan bersama kelas" loading="lazy">
+        <span class="memory-caption">The days we shared</span>
+      </button>
+    </div>
+
+    <p class="album-note">
+      X TKJ — Different stories, one journey.
+    </p>
+  </div>
+</section>
+
+<!-- Popup foto -->
+<div class="memory-lightbox" id="memoryLightbox"
+     role="dialog" aria-modal="true"
+     aria-label="Foto kenangan" aria-hidden="true">
+  <button class="lightbox-close" id="closeLightbox"
+          aria-label="Tutup foto">&times;</button>
+  <img id="lightboxImage" src="" alt="">
+  <p id="lightboxCaption"></p>
+</div>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Explore TKJ — Pengenalan Teknik Komputer dan Jaringan</p>
+      <p>&copy; <span id="year"></span> Proyek Pembelajaran Siswa</p>
+    </div>
+  </footer>
+
+  <script>
+
+const memoryCards = document.querySelectorAll(".memory-card");
+const lightbox = document.getElementById("memoryLightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const lightboxCaption = document.getElementById("lightboxCaption");
+const closeLightbox = document.getElementById("closeLightbox");
+
+function openMemory(card) {
+  const image = card.querySelector("img");
+
+  lightboxImage.src = image.src;
+  lightboxImage.alt = image.alt;
+  lightboxCaption.textContent = card.dataset.caption;
+
+  lightbox.classList.add("open");
+  lightbox.setAttribute("aria-hidden", "false");
+  closeLightbox.focus();
+}
+
+function closeMemory() {
+  lightbox.classList.remove("open");
+  lightbox.setAttribute("aria-hidden", "true");
+  lightboxImage.removeAttribute("src");
+}
+
+memoryCards.forEach(function (card) {
+  card.addEventListener("click", function () {
+    openMemory(card);
+  });
+});
+
+closeLightbox.addEventListener("click", closeMemory);
+
+lightbox.addEventListener("click", function (event) {
+  if (event.target === lightbox) {
+    closeMemory();
+  }
+});
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape" && lightbox.classList.contains("open")) {
+    closeMemory();
+  }
+});
+
+    // Menu navigasi untuk layar kecil
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", function () {
+      const menuTerbuka = navLinks.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", menuTerbuka);
+      menuBtn.textContent = menuTerbuka ? "✕" : "☰";
+    });
+
+    // Tutup menu setelah salah satu tautan dipilih
+    navLinks.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.textContent = "☰";
+      });
+    });
+
+    // FAQ: buka satu jawaban saat tombolnya diklik
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach(function (item) {
+      const question = item.querySelector(".faq-question");
+
+      question.addEventListener("click", function () {
+        const sedangAktif = item.classList.toggle("active");
+
+        question.setAttribute("aria-expanded", sedangAktif);
+        question.querySelector("span").textContent =
+          sedangAktif ? "−" : "+";
+      });
+    });
+
+    // Tampilkan elemen ketika masuk ke layar
+    const elements = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12
+      });
+
+      elements.forEach(function (element) {
+        observer.observe(element);
+      });
+    } else {
+      elements.forEach(function (element) {
+        element.classList.add("visible");
+      });
+    }
+
+    // Tahun otomatis
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>

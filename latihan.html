@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="index.html">kembali kehalaman utama</a>
+    <style>
+        table th,
+        table td {
+    text-align: center;
+    vertical-align: middle;
+}
+    </style>
+    <table border="1" cellspacing="0" cellpadding="10" width="100%">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>nomer wa</th>
+            <th>usia</th>
+            <th>alamat</th>
+            <th>jenis kelamin</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>vicar bagus</td>
+            <td>0192837187</td>
+            <td>17</td>
+            <td>kediri</td>
+            <td>laki-laki</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>veli ayu</td>
+            <td>120381293</td>
+            <td>14</td>
+            <td>kediri</td>
+            <td>prempuan</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>moses</td>
+            <td>01293812</td>
+            <td>15</td>
+            <td>kediri</td>
+            <td>laki-laki</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            
+        </tr>
+    </tfoot>
+</table>
+<form id="formSaya">
+    <label for="text">Nama:</label>
+    <input type="text" id="text" name="text" placeholder="tulis namamu">
+<p></p>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="tulis gmail mu">
+    <p></p>
+    <label for="pw">Password</label>
+    <input type="password" id="pw" name="pw" placeholder="tulis pw mu">
+    <p></p>
+    <label for="date">tanggal lahir</label>
+    <input type="date" id="date" name="date" placeholder="tulis tanggal lahir mu">
+    <p></p>
+    <button type="submit">Kirim</button>
+</form>
+<script>
+const form = document.getElementById("formSaya");
+
+form.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    alert("Pesan berhasil dikirim!");
+
+    form.reset();
+
+});
+</script>
+</body>
+</html>

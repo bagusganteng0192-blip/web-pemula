@@ -14,9 +14,8 @@ html {
 /* ===== BODY ===== */
 body {
   margin: 0;
-  color: white;
-  background: transparent;
   position: relative;
+  isolation: isolate;
 }
 
 video[controls] {

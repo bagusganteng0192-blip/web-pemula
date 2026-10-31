@@ -77,11 +77,13 @@ video[controls] {
 }
 
 /* ===== JUDUL ===== */
-h1 {
-  margin-top: 60px;
+h1,
+h2 {
+  margin-top: 40px;
   font-size: clamp(26px, 6vw, 40px);
   letter-spacing: 1px;
   text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  color: white;
 }
 
 /* ===== PARAGRAF ===== */

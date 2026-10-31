@@ -44,6 +44,7 @@ updateTombolVideo();
 <div class="music-player">
 
     <h3 id="judulLagu">Lagu pertama</h3>
+    <p id="statusMusik">Menunggu audio...</p>
 
     <audio id="bgm" preload="none">
         Browser kamu tidak mendukung audio.
@@ -184,6 +185,46 @@ updateTombolVideo();
         // Pengaturan awal
         setVolume(document.getElementById("volumeMusik").value);
         pilihLagu(0, false);
+        const statusMusik = document.getElementById("statusMusik");
+
+// Mengubah tulisan status
+function ubahStatus(pesan) {
+    statusMusik.textContent = pesan;
+}
+
+// Audio mulai dimuat
+bgm.addEventListener("loadstart", function () {
+    ubahStatus("⏳ Memuat audio...");
+});
+
+// Audio siap diputar
+bgm.addEventListener("canplay", function () {
+    if (bgm.paused) {
+        ubahStatus("✓ Audio siap diputar");
+    }
+});
+
+// Musik sedang diputar
+bgm.addEventListener("playing", function () {
+    ubahStatus("♫ Musik sedang diputar");
+});
+
+// Musik dijeda
+bgm.addEventListener("pause", function () {
+    if (!bgm.ended && !bgm.error) {
+        ubahStatus("Ⅱ Musik dijeda");
+    }
+});
+
+// Audio sedang buffering
+bgm.addEventListener("waiting", function () {
+    ubahStatus("⏳ Buffering audio...");
+});
+
+// Audio gagal dimuat
+bgm.addEventListener("error", function () {
+    ubahStatus("✕ Audio gagal dimuat!");
+});
     </script>
 
 </div>
@@ -199,6 +240,7 @@ updateTombolVideo();
     <h1 class="box2"><a href="#jj random"> jj anime random</h1>
     <h1 class="box2"><a href="#foto teman ku"> foto teman ku</h1>
     <h1 class="box2"><a href="#jj genshin"> genshin impact edit</h1>
+    <h1 class="box2"><a href="#jj arknight"> arknight enfield edit</h1>
     <h1 class="box2"><a href="#jj wuwa">wuthering wave edit</h1>
     <h1 class="box2"><a href="#valorant"> valorant edit</h1>
     <h1 class="box2"><a href="#test sinyal"> test kecepatan internet<br>via video</h1>
@@ -243,6 +285,7 @@ updateTombolVideo();
 <br>
 <a href="#listweb"><mark>Kembali Ke List</mark></a>
 </details>
+<h1 id="jj arknight"></h1>
 <h2 id="jj genshin"></h2>
 <h1 class="rainbow"> editan admin</h1>
 <details>
@@ -586,8 +629,40 @@ controls
 preload="none">
     <source src="genshin edit/jj genshin impact edit19.mp4">
 </video>
-<h2>cr: Janzz🅥</h2>
-
+<h2>cr: Janzz🅥</h2>    
+</details>
+<br>
+<h1 class="rainbow">arknight enfield edit</h1>
+<details>
+    <summary class="mute"><a>👉"CLICK HERE"👈</a></summary>
+    <video class="media-glow"
+    controls
+    preload="none"
+    poster="arknight enfield edit/arknight enfield foto1.png">
+    <source src="arknight enfield edit/arknigh enfield edit1.mp4">
+    </video>
+    <h2>cr: Yukirin</h2>
+    <video class="media-glow"
+    controls
+    preload="none"
+    poster="arknight enfield edit/arknigh enfield foto2.png">
+    <source src="arknight enfield edit/arknigh enfield edit2.mp4">
+    </video>
+    <h2>cr: 𝘵𝘰𝘰𝘲𝘺𝘻</h2>
+    <video class="media-glow"
+    controls
+    preload="none"
+    poster="arknight enfield edit/arknigh enfield foto3.png">
+    <source src="arknight enfield edit/arknigh enfield edit3.mp4">
+    </video>
+    <h2>cr: 𝙋𝙧𝙞𝙣𝙯𝙨𝙐𝙜𝙣`愛</h2>
+    <video class="media-glow"
+    controls
+    preload="none"
+    poster="arknight enfield edit/arknigh enfield foto4.png">
+    <source src="arknight enfield edit/arknigh enfield edit4.mp4">
+    </video>
+    <h2>cr: INVISE_EDIT</h2>
 <br>
 <a href="#listweb"><mark>Kembali Ke List</mark></a>
 </details>

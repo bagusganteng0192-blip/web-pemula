@@ -32,13 +32,13 @@ print("3. Headset     - Rp150.000")
 
 pilihan = input("\nMasukkan nomor barang: ")
 
-if pilihan == "Mouse":
+if pilihan == "1":
     barang = "Mouse"
     harga = 50000
-elif pilihan == "Keyboard":
+elif pilihan == "2":
     barang = "Keyboard"
     harga = 120000
-elif pilihan == "Headset":
+elif pilihan == "3":
     barang = "Headset"
     harga = 150000
 else:

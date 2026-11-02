@@ -9,37 +9,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
     <body>
-                <video playsinline loop id="uppervideo" class="headvideo">
-            <source preload="auto" src="uppervideo.mp4" class="char">
-        </video>
+<a id="profileLink" class="profile-link" href="index2.html" hidden aria-label="Buka profil">
+  <span id="profileInitial" class="profile-initial" aria-hidden="true">&#128100;</span>
+  <img id="profileAvatar" alt="" hidden>
+  <span id="profileName" class="profile-name"></span>
+</a>
 <div class="bg-rainbow" id="rainbowBG"></div>
 <div class="container">
         <h2 id="listweb"></h2>
-        <p>play/pause video diatas ⬆</p>
-        <button id="tombolronova" class="mute:hover">pause</button>
-<script>
-const videoUpper = document.getElementById("uppervideo");
-const tombolVideo = document.getElementById("tombolronova");
-
-function updateTombolVideo() {
-  tombolVideo.textContent = videoUpper.paused ? "play" : "pause";
-}
-
-tombolVideo.addEventListener("click", () => {
-  if (videoUpper.paused) {
-    videoUpper.play().catch(error => {
-      console.log("Video gagal diputar:", error);
-    });
-  } else {
-    videoUpper.pause();
-  }
-});
-
-videoUpper.addEventListener("play", updateTombolVideo);
-videoUpper.addEventListener("pause", updateTombolVideo);
-
-updateTombolVideo();
-</script>
 <h2 class="rainbow"> copyright: HoYoLAB and HoYoverse</h2>
 <div class="music-player">
 
@@ -230,25 +207,25 @@ bgm.addEventListener("error", function () {
 </div>
         
 <div class="bg-rainbow" id="rainbowBG"></div>
-        <h1 class="rainbow">WELCOME TO MY WEBSITE</h1>                                  
-        <h1 class="rainbow"> <strong>JIKA KALIAN MALAS UNTUK SCROLL<br> KLIK INI AJA</strong></h1> <h2 id="listweb"></h2>
-    <br></br>
-    <details>
-        <summary class="mute"><a>👉"klik di sini"👈</a></summary>
-    <h1 class="box2"><a href="#masukan">give us suggestions or<br>criticism</h1>
-    <h1 class="box2"><a href="#editan admin"> editan admin</h1>
-    <h1 class="box2"><a href="#jj random"> jj anime random</h1>
-    <h1 class="box2"><a href="#jj genshin"> genshin impact edit</h1>
-    <h1 class="box2"><a href="#jj arknight"> arknight enfield edit</h1>
-    <h1 class="box2"><a href="#jj wuwa">wuthering wave edit</h1>
-    <h1 class="box2"><a href="#valorant"> valorant edit</h1>
-    <h1 class="box2"><a href="#test sinyal"> test kecepatan internet<br>via video</h1>
-    <h1 class="box2"><a href="#video 4 queen"> 4 heavenly queen</h1>
-    <h1 class="box2"><a href="latihan/latihan.html"> my web training</h1>
-    <h1 class="box2"><a href="web class/X-TKJ website.html" target="_blank">web X-TKJ</h1>
-    </details>
+        <section class="quick-nav" aria-label="Menu utama">
+  <h1 class="rainbow">WELCOME TO MY WEBSITE</h1>
+  <p class="quick-nav-intro">Pilih koleksi yang ingin kamu lihat.</p>
+  <nav class="quick-links" aria-label="Jelajahi website">
+    <a href="#masukan">Kotak saran</a>
+    <a href="#editan admin">Editan admin</a>
+    <a href="#jj random">JJ anime random</a>
+    <a href="#jj genshin">Genshin Impact</a>
+    <a href="#jj arknight">Arknights</a>
+    <a href="#jj wuwa">Wuthering Waves</a>
+    <a href="#valorant">Valorant</a>
+    <a href="#test sinyal">Tes kecepatan internet</a>
+    <a href="#video 4 queen">4 Heavenly Queen</a>
+    <a href="latihan/latihan.html">Latihan website</a>
+    <a href="web class/X-TKJ website.html" target="_blank" rel="noopener noreferrer">Website X-TKJ</a>
+  </nav>
+</section>
 
-    <h1 class="rainbow"> my favorite anime list</h1>
+<h1 class="rainbow">My Favorite Anime List</h1>
 <details>
     <summary class="mute"><a>👉"CLICK HERE"👈</a></summary>
 <h1 class="rainbow">no.1 <br>Alya</h1 class="animelist" ></a>
@@ -301,15 +278,15 @@ poster="list waifu/miwa list5.png">
 <br>
 <a href="#listweb"><mark>Kembali Ke List</mark></a>
 </details>
-<h1 id="jj arknight"></h1>
-<h2 id="jj genshin"></h2>
-<h1 class="rainbow"> editan admin</h1>
+
+
+<h1 class="rainbow" id="editan admin">Editan admin</h1>
 <details>
     <summary class="mute"><a>👉"CLICK HERE"👈</a></summary>
     <h2 class="rainbow">-something is wrong-</h2>
 </details>
-<h1 id="jj wuwa"></h1>
-    <h1 class="rainbow"> kumpulan jj anime random</h1>
+
+    <h1 class="rainbow" id="jj random">Kumpulan JJ Anime Random</h1>
     <details>
         <summary class="mute"><a>👉"CLICK HERE"👈</a></summary>
     <video class="media-glow"
@@ -466,9 +443,9 @@ preload="none">
     <br>
     <a href="#listweb"><mark>Kembali Ke List</mark></a>
     </details>
-    <h2 id="valorant"></h2>
-<h1 class="rainbow"> kumpulan jj genshin impact edit</h1>
-<h2 id="test sinyal"></h2>
+    
+<h1 class="rainbow" id="jj genshin">Kumpulan JJ Genshin Impact Edit</h1>
+
 <details>
     <summary class="mute"><a>👉"CLICK HERE"👈</a></summary>
     <iframe class="media-glow" 
@@ -573,7 +550,7 @@ controls
 preload="none">
     <source src="genshin edit/jj genshin impact edit10.mp4" type="video/mp4">
 </video>
-<h2 id="valorant"></h2>
+
 <h2>cr: 𝒔𝒂𝒊𝒎𝒊𝒏.</h2>
 <video class="media-glow"
 poster="genshin edit/jj genshin impact foto11.png"
@@ -651,7 +628,7 @@ preload="none">
 <h2>cr: Janzz🅥</h2>    
 </details>
 <br>
-<h1 class="rainbow">arknight enfield edit</h1>
+<h1 class="rainbow" id="jj arknight">Arknights Edit</h1>
 <details>
     <summary class="mute"><a>👉"CLICK HERE"👈</a></summary>
     <video class="media-glow"
@@ -686,7 +663,7 @@ preload="none">
 <a href="#listweb"><mark>Kembali Ke List</mark></a>
 </details>
 <p></p>
-<h1 class="rainbow">wuthering wave edit</h1>
+<h1 class="rainbow" id="jj wuwa">Wuthering Waves Edit</h1>
 <details>
     <summary class="mute"><a>👉"CLICK HERE"👈</a></summary>
     <video class="media-glow"
@@ -713,7 +690,7 @@ preload="none">
 <br>
 <a href="#listweb"><mark>Kembali Ke List</mark></a>
 </details>
-<h1 class="rainbow"> valorant edit</h1>
+<h1 class="rainbow" id="valorant">Valorant Edit</h1>
 <details>
     <summary class="mute"><a>👉"CLICK HERE"👈</a></summary>
 <video class="media-glow" 
@@ -758,10 +735,9 @@ poster="valorant foto5.png">
 <br>
 <p></p> 
 
-<h2 id="video 4 queen"></h2>
-<h1 class="rainbow"> "TEST KECEPATAN SINYAL INTERNET"<br>
-     JIKA LAG/PATAH-PATAH BERARTI INTERNET KALIAN BUSUK</h1> 
-     <h2 id="test sinyal"></h2>
+
+<h1 class="rainbow" id="test sinyal">Tes Kecepatan Internet<br>Jika video tersendat, koneksi internet mungkin lambat</h1> 
+     
 <h3 class="listweb"> format video = mp4, size = (rahasia)<br> 
     genre = hih wibu</h3>
 <p></p> 
@@ -907,7 +883,7 @@ preload="none">
 <br>
 <a href="#listweb"><mark>Kembali Ke List</mark></a>
 </details>
-    <h1 class="rainbow">4  Heavenly Queen</h1>
+    <h1 class="rainbow" id="video 4 queen">4 Heavenly Queen</h1>
     <details>
         <summary class="mute"><a>👉"CLICK HERE"👈</a></summary>
 <video class="media-glow" loading="lazy"
@@ -915,7 +891,7 @@ preload="none">
 controls width="350px" preload="none">
     <source src="heavenly queen/video 4 queen0.mp4" type="video/mp4">
 </video>
-<h2>─ 𝘿𝙖𝙢𝙢 🪐</h2>
+<h2>cr: ─ 𝘿𝙖𝙢𝙢 🪐</h2>
 <p></p>
 <video class="media-glow" loading="lazy"
  poster="heavenly queen/video queen foto1.png"
@@ -1014,13 +990,13 @@ controls preload="none">
     <P></P>
 <h2 id="about me"></h2>
 <h1>ini semua sosmed yang saya pakai. jika kalian ingin mampir ya silahkan</h1>
-<a href="https://www.youtube.com/@vicarTzy" target="_blank">
+<a href="https://www.youtube.com/@vicarTzy" target="_blank" rel="noopener noreferrer">
     <h1 class="rainbow">Youtube</h1> <img src="Youtube_logo.png" loading="lazy" class="animelist">
 </a>
-<a href="https://www.tiktok.com/@vicartzy" target="_blank">
+<a href="https://www.tiktok.com/@vicartzy" target="_blank" rel="noopener noreferrer">
     <h1 class="rainbow">Tiktok</h1> <img src="logo tiktok.png" loading="lazy" class="animelist">
 </a>
-<a href="https://www.roblox.com/users/5271199486/profile" target="_blank">
+<a href="https://www.roblox.com/users/5271199486/profile" target="_blank" rel="noopener noreferrer">
     <h1 class="rainbow">Roblox</h1> <img src="Roblox.png" loading="lazy" class="animelist">
 </a>
 <br>
@@ -1033,7 +1009,7 @@ controls preload="none">
         <div><h1 class="box1"> for entertainment purposes only</h1>
             
             <h2>Support me on Saweria</h2>
-            <a href="https://saweria.co/bagusTzy" target="_blank">
+            <a href="https://saweria.co/bagusTzy" target="_blank" rel="noopener noreferrer">
                 <img src="saweria.png" loading="lazy" class="animelist">
             </a>
         
@@ -1041,10 +1017,10 @@ controls preload="none">
     </footer>
 <br></br>
     <div>
-        <a href="#uppervideo"><h1><strong> kembali ke atas </strong></h1> 
+        <a href="#rainbowBG"><h1><strong> kembali ke atas </strong></h1> 
             <img src="tanda panah ke atas.png" loading="lazy"></br>
         </div>
-        <a class="box2" href="form.html">Klik disini</a>
+        
 <script>
   window.si = window.si || function () {
     (window.si.q = window.si.q || []).push(arguments);
@@ -1072,8 +1048,9 @@ videos.forEach(video => {
 <style>
 body {
   margin: 0;
-  font-family: Arial;
-  background: black;
+  font-family: Arial, sans-serif;
+  background: #090b12;
+  color: #f4f5fb;
 }
 
 /* ================= LOADING ================= */
@@ -1155,11 +1132,19 @@ body {
 }
 
 .gate-content h1 {
+  width: min(100% - 32px, 700px);
+  margin: 0 auto 20px;
+  text-align: center;
   font-size: 30px;
-  margin-bottom: 20px;
   animation: float 2s ease-in-out infinite;
 }
 
+.login-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
 .gate-content button {
   padding: 12px 25px;
   border: none;
@@ -1176,6 +1161,44 @@ body {
   transform: scale(1.1);
 }
 
+.profile-link {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: min(260px, calc(100vw - 32px));
+  padding: 8px 14px 8px 8px;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 999px;
+  background: rgba(20,20,20,.9);
+  color: white;
+  font: 14px Arial, sans-serif;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(0,0,0,.35);
+  backdrop-filter: blur(8px);
+}
+.profile-link[hidden] { display: none; }
+.profile-link img, .profile-initial {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border-radius: 50%;
+}
+.profile-link img { object-fit: cover; }
+.profile-initial {
+  display: grid;
+  place-items: center;
+  background: #333;
+  font-size: 18px;
+}
+.profile-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 /* ================= SITE ================= */
 #site {
   display: none;
@@ -1208,7 +1231,10 @@ body {
   <!-- CONTENT -->
   <div class="gate-content">
     <h1 id="teks">🔒 Klik untuk Masuk</h1>
-    <button id="tombol" onclick="openSite()">ENTER</button>
+    <div class="login-options">
+    <button id="tombolGoogle" type="button" onclick="loginGoogle()">Login dengan Google</button>
+    <button id="tombol" type="button" onclick="openSite()">Lanjut sebagai Guest</button>
+</div>
   </div>
 </div>
 
@@ -1223,15 +1249,21 @@ const gate = document.getElementById("gate");
 const site = document.getElementById("site");
 const tombol = document.getElementById("tombol");
 const teks = document.getElementById("teks");
+window.userSignedIn = false;
 
 
 /* LOADING */
 window.onload = () => {
   setTimeout(() => {
     loading.style.display = "none";
+    if (window.userSignedIn) {
+      gate.style.display = "none";
+      return;
+    }
     gate.style.display = "block";
   }, 1500);
 };
+
 
 /* ENTER */
 function openSite() {
@@ -1242,17 +1274,6 @@ function openSite() {
   setTimeout(() => {
     gate.style.display = "none";
     site.style.display = "block";
-        const videoUpper = document.getElementById("uppervideo");
-
-    videoUpper.muted = false;
-    videoUpper.play().catch(error => {
-      console.log("Video gagal diputar:", error);
-    });
-
-    document.getElementById("uppervideo").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
   }, 900);
 }
 </script>
@@ -1291,7 +1312,79 @@ videos.forEach(video => {
 
     <button type="submit">Kirim Saran</button>
   </form>
+  <a class="box2" href="form.html">Klik disini</a>
 </section>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDBlXHuc682eJ3wiGEVYWiUpi0wv6jwEco",
+    authDomain: "myweb-id.firebaseapp.com",
+    projectId: "myweb-id",
+    storageBucket: "myweb-id.firebasestorage.app",
+    messagingSenderId: "273192370569",
+    appId: "1:273192370569:web:0156d6fad96522e30c2158",
+    measurementId: "G-EDW1MCYTME"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 <a href="latihan.html">klik disini</a>
-    </body>
+    <script type="module">
+  import { getApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+  import {
+    getAuth,
+    onAuthStateChanged,
+    GoogleAuthProvider,
+    signInWithPopup
+  } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
+
+  const auth = getAuth(getApp());
+  const googleProvider = new GoogleAuthProvider();
+
+  onAuthStateChanged(auth, (user) => {
+    const profileLink = document.getElementById("profileLink");
+    const profileName = document.getElementById("profileName");
+    const profileAvatar = document.getElementById("profileAvatar");
+    const profileInitial = document.getElementById("profileInitial");
+    window.userSignedIn = Boolean(user);
+
+    if (!user) {
+      profileLink.hidden = true;
+      return;
+    }
+
+    profileName.textContent = user.displayName || user.email || "Profil saya";
+    if (user.photoURL) {
+      profileAvatar.src = user.photoURL;
+      profileAvatar.hidden = false;
+      profileInitial.hidden = true;
+    } else {
+      profileAvatar.hidden = true;
+      profileInitial.hidden = false;
+    }
+    profileLink.hidden = false;
+    window.openSite();
+  });
+
+  window.loginGoogle = async function () {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const nama = result.user.displayName || result.user.email || "pengunjung";
+      document.getElementById("teks").textContent = `Halo, ${nama}`;
+    } catch (error) {
+      console.error("Login Google gagal:", error);
+      alert("Login Google gagal. Coba lagi atau lanjut sebagai Guest.");
+    }
+  };
+</script>
+</body>
 </head>

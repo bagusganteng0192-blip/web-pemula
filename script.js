@@ -327,6 +327,10 @@ allVideos.forEach(activeVideo => {
       item.className = "shorts-item";
       const classifyOrientation = () => item.classList.toggle("is-portrait", video.videoHeight > video.videoWidth);
       video.addEventListener("loadedmetadata", classifyOrientation);
+      video.addEventListener("click", () => {
+        if (video.paused) video.play().catch(() => {});
+        else video.pause();
+      });
       classifyOrientation();
       item.innerHTML = `<div class="shorts-video"></div><div class="shorts-caption"><p class="shorts-collection"></p><p class="shorts-credit"></p><p class="shorts-count"></p></div><div class="shorts-volume-control"><button class="shorts-volume-toggle" type="button" aria-label="Nyalakan suara" title="Nyalakan suara">🔇</button><input class="shorts-volume-slider" type="range" min="0" max="1" step="0.01" aria-label="Volume video"></div><div class="shorts-controls"><button class="shorts-toggle" type="button">Jeda</button><input class="shorts-seek" type="range" min="0" max="100" step="0.1" value="0" aria-label="Posisi video"><span class="shorts-time">0:00 / 0:00</span></div>`;
       item.querySelector(".shorts-video").append(video);

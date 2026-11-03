@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sosial &amp; Kotak Saran</title>
+  <script>document.documentElement.dataset.theme = localStorage.getItem("site-theme") || "slate";</script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-rainbow" aria-hidden="true"></div>
+  <main class="social-page">
+    <a class="social-back" href="index.html">&larr; Kembali ke video</a>
+    <header class="social-header">
+      <p class="shorts-eyebrow">TERHUBUNG</p>
+      <h1 class="rainbow">Sosial &amp; Kotak Saran</h1>
+      <p>Temukan akun sosialku atau kirim saran untuk website ini.</p>
+    </header>
+
+    <section class="social-card" aria-labelledby="socialTitle">
+      <h2 id="socialTitle">Sosial media</h2>
+      <div class="social-links">
+        <a href="https://www.youtube.com/@vicarTzy" target="_blank" rel="noopener noreferrer">
+          <img src="Youtube_logo.png" alt="" loading="lazy"><span>YouTube</span>
+        </a>
+        <a href="https://www.tiktok.com/@vicartzy" target="_blank" rel="noopener noreferrer">
+          <img src="logo tiktok.png" alt="" loading="lazy"><span>TikTok</span>
+        </a>
+        <a href="https://www.roblox.com/users/5271199486/profile" target="_blank" rel="noopener noreferrer">
+          <img src="Roblox.png" alt="" loading="lazy"><span>Roblox</span>
+        </a>
+      </div>
+      <div class="saweria-card">
+        <h2>Dukung lewat Saweria</h2>
+        <a href="https://saweria.co/bagusTzy" target="_blank" rel="noopener noreferrer">
+          <img src="saweria.png" alt="Buka Saweria" loading="lazy">
+        </a>
+      </div>
+      <img class="social-mascot" src="anime.gif" alt="Animasi" loading="lazy">
+      <p class="social-note">For entertainment purposes only</p>
+      <p class="social-credit">Powered by VICARBAGUS</p>
+    </section>
+
+    <section class="form social-form" aria-labelledby="suggestionTitle">
+      <h2 id="suggestionTitle">Kotak saran</h2>
+      <p>Punya ide atau saran untuk website ini? Tulis di sini.</p>
+      <form action="https://formspree.io/f/mjygjbvw" method="POST">
+        <label for="nama">Nama (wajib)</label>
+        <input type="text" id="nama" name="nama" required>
+        <label for="saran">Saran kamu</label>
+        <textarea id="saran" name="saran" placeholder="Tulis saranmu di sini" rows="5" maxlength="1000" required></textarea>
+        <button type="submit">Kirim saran</button>
+      </form>
+      <a class="social-external-form" href="form.html">Buka formulir alternatif</a>
+    </section>
+
+    <footer class="social-footer">
+      <a href="index.html">Kembali ke halaman video</a>
+    </footer>
+  </main>
+  <script>
+    const videoContext = new URLSearchParams(window.location.search).get("video");
+    if (videoContext) {
+      const suggestionField = document.getElementById("saran");
+      suggestionField.value = `Komentar untuk ${videoContext}: `;
+    }
+  </script>
+</body>
+</html>

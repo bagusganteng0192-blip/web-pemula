@@ -279,7 +279,6 @@ allVideos.forEach(activeVideo => {
     </header>
     <nav class="video-sidebar" id="videoSidebar" aria-label="Navigasi video">
       <button class="video-side-link is-active" type="button" data-feed-home><span class="video-side-icon">⌂</span><span>For You</span></button>
-      <a class="video-side-link" href="index3.html"><span class="video-side-icon">⌕</span><span>Explore</span></a>
       <div class="video-side-link video-side-link-static"><span class="video-side-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20v-1.2a6.5 6.5 0 0 1 13 0V20"/></svg></span><span>Following</span></div>
       <div class="video-side-link video-side-link-static"><span class="video-side-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M2.8 20v-1a6.2 6.2 0 0 1 12.4 0v1M15.3 15.3a4.8 4.8 0 0 1 5.9 4.7"/></svg></span><span>Friends</span></div>
       <div class="video-side-link video-side-link-static"><span class="video-side-icon video-side-live"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></span><span>LIVE</span></div>
@@ -287,10 +286,11 @@ allVideos.forEach(activeVideo => {
       <div class="video-side-link video-side-link-static"><span class="video-side-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v13H9l-5 4V4Z"/><path d="M8 10h8M8 13h5"/></svg></span><span>Activity</span></div>
       <div class="video-side-link video-side-link-static"><span class="video-side-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 8v8M8 12h8"/></svg></span><span>Upload</span></div>
       <a class="video-side-link" href="index2.html"><span id="videoSidebarAvatar" class="video-side-icon video-side-profile" aria-hidden="true"><img alt=""></span><span>Profile</span></a>
+      <a class="video-side-link" href="index3.html"><span class="video-side-icon">⌕</span><span>Saran & Sosmed</span></a>
       <div class="video-side-link video-side-link-static"><span class="video-side-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></span><span>More</span></div>
     </nav>
     <nav class="video-actions" aria-label="Aksi video">
-      <button class="video-action" id="videoLikeButton" type="button" aria-pressed="false" aria-label="Suka video">
+      <button class="video-action" id="videoLikeButton" type="button" aria-pressed="false" aria-label="Suka video" title="Login untuk menyukai video" disabled>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>
         <span>Suka</span>
       </button>
@@ -325,19 +325,32 @@ allVideos.forEach(activeVideo => {
 
       const item = document.createElement("article");
       item.className = "shorts-item";
-      const classifyOrientation = () => item.classList.toggle("is-portrait", video.videoHeight > video.videoWidth);
-      video.addEventListener("loadedmetadata", classifyOrientation);
       video.addEventListener("click", () => {
         if (video.paused) video.play().catch(() => {});
         else video.pause();
       });
-      classifyOrientation();
-      item.innerHTML = `<div class="shorts-video"></div><div class="shorts-caption"><p class="shorts-collection"></p><p class="shorts-credit"></p><p class="shorts-count"></p></div><div class="shorts-volume-control"><button class="shorts-volume-toggle" type="button" aria-label="Nyalakan suara" title="Nyalakan suara">🔇</button><input class="shorts-volume-slider" type="range" min="0" max="1" step="0.01" aria-label="Volume video"></div><div class="shorts-controls"><button class="shorts-toggle" type="button">Jeda</button><input class="shorts-seek" type="range" min="0" max="100" step="0.1" value="0" aria-label="Posisi video"><span class="shorts-time">0:00 / 0:00</span></div>`;
-      item.querySelector(".shorts-video").append(video);
+      item.innerHTML = `<div class="shorts-video"><div class="shorts-video-frame"></div></div><div class="shorts-caption"><p class="shorts-collection"></p><p class="shorts-credit"></p><p class="shorts-count"></p></div><div class="shorts-volume-control"><button class="shorts-volume-toggle" type="button" aria-label="Nyalakan suara" title="Nyalakan suara">🔇</button><input class="shorts-volume-slider" type="range" min="0" max="1" step="0.01" aria-label="Volume video"></div><div class="shorts-controls"><input class="shorts-seek" type="range" min="0" max="100" step="0.1" value="0" aria-label="Posisi video"><span class="shorts-time">0:00 / 0:00</span></div>`;
+      const videoFrame = item.querySelector(".shorts-video-frame");
+      let posterRatioLoaded = false;
+      const setFrameRatio = (width, height) => {
+        if (width > 0 && height > 0) videoFrame.style.aspectRatio = `${width} / ${height}`;
+      };
+      const updateFrameFromVideo = () => {
+        if (!posterRatioLoaded) setFrameRatio(video.videoWidth, video.videoHeight);
+      };
+      video.addEventListener("loadedmetadata", updateFrameFromVideo);
+      if (video.poster) {
+        const posterImage = new Image();
+        posterImage.addEventListener("load", () => {
+          posterRatioLoaded = true;
+          setFrameRatio(posterImage.naturalWidth, posterImage.naturalHeight);
+        }, { once: true });
+        posterImage.src = video.poster;
+      }
+      videoFrame.append(video);
       item.querySelector(".shorts-collection").textContent = collectionName;
       item.querySelector(".shorts-credit").textContent = credit;
       item.querySelector(".shorts-credit").hidden = !credit;
-      const toggleButton = item.querySelector(".shorts-toggle");
       const seekSlider = item.querySelector(".shorts-seek");
       const timeLabel = item.querySelector(".shorts-time");
       const volumeToggle = item.querySelector(".shorts-volume-toggle");
@@ -354,13 +367,7 @@ allVideos.forEach(activeVideo => {
           seekSlider.value = String((video.currentTime / duration) * 100);
         }
         timeLabel.textContent = `${formatTime(video.currentTime)} / ${formatTime(duration)}`;
-        toggleButton.textContent = video.paused ? "Putar" : "Jeda";
-        toggleButton.setAttribute("aria-label", video.paused ? "Putar video" : "Jeda video");
       };
-      toggleButton.addEventListener("click", () => {
-        if (video.paused) video.play().catch(() => {});
-        else video.pause();
-      });
       const updateVolumeControls = () => {
         volumeSlider.value = String(video.volume);
         volumeToggle.textContent = video.muted ? "🔇" : "🔊";
@@ -379,7 +386,7 @@ allVideos.forEach(activeVideo => {
           video.currentTime = (Number(seekSlider.value) / 100) * video.duration;
         }
       });
-      ["timeupdate", "loadedmetadata", "durationchange", "play", "pause"].forEach((eventName) => {
+      ["timeupdate", "loadedmetadata", "durationchange"].forEach((eventName) => {
         video.addEventListener(eventName, updateControls);
       });
       updateControls();
@@ -389,6 +396,13 @@ allVideos.forEach(activeVideo => {
     details.remove();
   });
 
+  const videoCatalog = Object.fromEntries(clips.map(({ item, video, collectionName, key }) => [key, {
+    src: video.querySelector("source")?.getAttribute("src") || video.getAttribute("src") || "",
+    poster: video.getAttribute("poster") || "",
+    collectionName,
+    credit: item.querySelector(".shorts-credit")?.textContent.trim() || ""
+  }]));
+  try { localStorage.setItem("site-video-catalog", JSON.stringify(videoCatalog)); } catch {}
   document.body.insertAdjacentElement("afterbegin", feed);
 
   for (let index = clips.length - 1; index > 0; index--) {
@@ -397,10 +411,14 @@ allVideos.forEach(activeVideo => {
   }
 
   const list = document.getElementById("shortsList");
+  const requestedVideoKey = new URLSearchParams(window.location.search).get("video");
+  const requestedClipIndex = requestedVideoKey ? clips.findIndex(({ key }) => key === requestedVideoKey) : -1;
   clips.forEach(({ item }, index) => {
     item.querySelector(".shorts-count").textContent = `${index + 1} / ${clips.length}`;
     list.append(item);
   });
+
+  if (requestedClipIndex >= 0) list.scrollTop = requestedClipIndex * list.clientHeight;
 
   const readClipSet = (storageKey) => {
     try {
@@ -410,13 +428,14 @@ allVideos.forEach(activeVideo => {
       return [];
     }
   };
-  let likedClipKeys = readClipSet("site-liked-videos");
+  let likedClipKeys = [];
+  let isSignedIn = false;
   let savedClipKeys = readClipSet("site-saved-videos");
   const likeButton = document.getElementById("videoLikeButton");
   const saveButton = document.getElementById("videoSaveButton");
-  let activeClipIndex = 0;
+  let activeClipIndex = requestedClipIndex >= 0 ? requestedClipIndex : 0;
   window.playInitialVideo = () => {
-    const firstVideo = clips[0]?.video;
+    const firstVideo = clips[activeClipIndex]?.video;
     if (!firstVideo) return;
     firstVideo.muted = true;
     firstVideo.playsInline = true;
@@ -432,10 +451,22 @@ allVideos.forEach(activeVideo => {
     saveButton.setAttribute("aria-pressed", String(isSaved));
     saveButton.classList.toggle("is-active", isSaved);
   };
+  const syncLikeAccess = (signedIn) => {
+    isSignedIn = signedIn === true;
+    likeButton.disabled = !isSignedIn;
+    likeButton.title = isSignedIn ? "Suka video" : "Login untuk menyukai video";
+    likedClipKeys = isSignedIn ? readClipSet("site-liked-videos") : [];
+    updateVideoActions();
+  };
+  window.addEventListener("site-auth-state-change", (event) => {
+    syncLikeAccess(event.detail?.signedIn);
+  });
+  if (typeof window.userSignedIn === "boolean") syncLikeAccess(window.userSignedIn);
   const persistClipSet = (storageKey, values) => {
     try { localStorage.setItem(storageKey, JSON.stringify(values)); } catch {}
   };
   likeButton.addEventListener("click", () => {
+    if (!isSignedIn) return;
     const key = clips[activeClipIndex]?.key;
     if (!key) return;
     likedClipKeys = likedClipKeys.includes(key)

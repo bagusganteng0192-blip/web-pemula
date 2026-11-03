@@ -20,6 +20,7 @@ import { getApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.j
   onAuthStateChanged(auth, (user) => {
     const profileLoginButton = document.getElementById("profileLoginButton");
     window.userSignedIn = Boolean(user);
+    window.dispatchEvent(new CustomEvent("site-auth-state-change", { detail: { signedIn: Boolean(user) } }));
 
     const profileAvatar = document.getElementById("videoSidebarAvatar");
     const avatarImage = profileAvatar?.querySelector("img");

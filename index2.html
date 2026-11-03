@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profil</title>
-  <script>document.documentElement.dataset.theme = localStorage.getItem("site-theme") || "slate";</script>
+  <script>document.documentElement.dataset.theme = "slate";</script>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -18,10 +18,8 @@
       font-family: Arial, sans-serif;
     }
     html[data-theme="slate"] { --profile-text: #f4f5fb; --profile-muted: #a8afc2; --profile-background: radial-gradient(ellipse at 12% 8%, rgba(88,105,190,.28), transparent 38%), radial-gradient(ellipse at 88% 22%, rgba(39,133,154,.18), transparent 34%), radial-gradient(ellipse at 52% 100%, rgba(111,79,155,.16), transparent 42%), linear-gradient(145deg, #151c2c, #111827 48%, #182232); --profile-card: rgba(19,22,33,.88); --profile-line: rgba(255,255,255,.11); }
-    html[data-theme="white"] { color-scheme: light; --profile-text: #202a3a; --profile-muted: #596579; --profile-background: linear-gradient(145deg, #f8fafc, #e9eef5); --profile-card: rgba(255,255,255,.9); --profile-line: rgba(28,39,56,.14); }
-    html[data-theme="dark"] { --profile-text: #f4f5fb; --profile-muted: #a8afc2; --profile-background: #080a0f; --profile-card: #14161c; --profile-line: rgba(255,255,255,.1); }
     .profile-card {
-      width: min(100%, 420px);
+      width: min(100%, 1120px);
       padding: 32px 24px;
       text-align: center;
       background: var(--profile-card);
@@ -43,9 +41,6 @@
     }
     h1 { margin: 0 0 8px; font-size: 25px; }
     #email { margin: 0 0 26px; color: var(--profile-muted); overflow-wrap: anywhere; }
-    .theme-settings { margin: 24px 0; padding: 18px; border: 1px solid var(--profile-line); border-radius: 14px; text-align: left; }
-    .theme-settings h2 { margin: 0 0 12px; font-size: 16px; }
-    .theme-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
     button {
       padding: 12px 24px;
       border: 1px solid var(--profile-line);
@@ -57,10 +52,20 @@
       transition: transform .2s, border-color .2s, background .2s;
     }
     button:hover { transform: translateY(-1px); }
-    .theme-options button[aria-pressed="true"] { border-color: #82d8ff; background: rgba(130,216,255,.12); }
+    .liked-videos { margin: 30px 0 8px; text-align: left; }
+    .liked-videos h2 { margin: 0 0 16px; font-size: 20px; color: var(--profile-text); }
+    .liked-videos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+    .liked-video-card { min-width: 0; padding: 12px; border: 1px solid var(--profile-line); border-radius: 16px; background: rgba(0,0,0,.12); }
+    .liked-video-frame { display: grid; width: 100%; max-height: 420px; aspect-ratio: 9 / 16; overflow: hidden; place-items: center; border-radius: 11px; background: #050609; }
+    .liked-poster-link { display: grid; width: 100%; height: 100%; place-items: center; background: #050609; }
+    .liked-poster-link img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .liked-poster-missing { padding: 24px; color: var(--profile-muted); font-size: 13px; text-align: center; }
+    .liked-video-title { margin: 10px 2px 2px; color: var(--profile-text); font-size: 14px; font-weight: 700; }
+    .liked-video-credit { margin: 0 2px; color: var(--profile-muted); font-size: 12px; overflow-wrap: anywhere; }
+    .liked-empty { margin: 0; color: var(--profile-muted); text-align: left; }
+    @media (max-width: 520px) { .liked-videos-grid { grid-template-columns: 1fr; } }
     #logoutButton { margin-top: 8px; background: #30384a; }
     .back-link { position: absolute; top: 16px; left: 16px; color: var(--profile-text); text-decoration: none; }
-    html[data-theme="white"] #logoutButton { background: #e8edf4; }
     [hidden] { display: none !important; }
     #status { min-height: 20px; margin-top: 14px; color: #ffb3b3; font-size: 14px; }
   </style>
@@ -71,13 +76,10 @@
     <img id="avatar" class="avatar" alt="Foto profil" hidden>
     <h1 id="name">Memuat profil...</h1>
     <p id="email"></p>
-    <section class="theme-settings" aria-labelledby="themeTitle">
-      <h2 id="themeTitle">Tampilan latar</h2>
-      <div class="theme-options" role="group" aria-label="Pilih latar belakang">
-        <button type="button" data-theme-choice="slate" aria-pressed="false">Slate</button>
-        <button type="button" data-theme-choice="white" aria-pressed="false">Putih</button>
-        <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
-      </div>
+    <section class="liked-videos" aria-labelledby="likedVideosTitle">
+      <h2 id="likedVideosTitle">Video yang disukai <span id="likedVideosCount">(0)</span></h2>
+      <p id="likedVideosEmpty" class="liked-empty">Belum ada video yang disukai.</p>
+      <div id="likedVideosGrid" class="liked-videos-grid"></div>
     </section>
     <button id="logoutButton" type="button" hidden>Log out</button>
     <p id="status" role="status"></p>
@@ -115,17 +117,75 @@
     const avatarFallback = document.getElementById("avatarFallback");
     const logoutButton = document.getElementById("logoutButton");
     const status = document.getElementById("status");
+    const likedVideosGrid = document.getElementById("likedVideosGrid");
+    const likedVideosCount = document.getElementById("likedVideosCount");
+    const likedVideosEmpty = document.getElementById("likedVideosEmpty");
 
-    const themeButtons = document.querySelectorAll("[data-theme-choice]");
-    function setTheme(theme) {
-      document.documentElement.dataset.theme = theme;
-      localStorage.setItem("site-theme", theme);
-      themeButtons.forEach((button) => {
-        button.setAttribute("aria-pressed", String(button.dataset.themeChoice === theme));
+    function readStoredArray(key) {
+      try {
+        const value = JSON.parse(localStorage.getItem(key) || "[]");
+        return Array.isArray(value) ? value : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function readVideoCatalog() {
+      try {
+        const value = JSON.parse(localStorage.getItem("site-video-catalog") || "{}");
+        return value && typeof value === "object" ? value : {};
+      } catch {
+        return {};
+      }
+    }
+
+    function renderLikedVideos() {
+      const likedKeys = readStoredArray("site-liked-videos");
+      const catalog = readVideoCatalog();
+      likedVideosGrid.replaceChildren();
+      likedVideosCount.textContent = `(${likedKeys.length})`;
+      likedVideosEmpty.hidden = likedKeys.length > 0;
+
+      likedKeys.forEach((key) => {
+        const record = catalog[key] || {};
+        const sourcePath = record.src || key;
+        const card = document.createElement("article");
+        card.className = "liked-video-card";
+        const frame = document.createElement("div");
+        frame.className = "liked-video-frame";
+        const link = document.createElement("a");
+        link.className = "liked-poster-link";
+        const destination = new URL("index.html", window.location.href);
+        destination.searchParams.set("video", sourcePath);
+        link.href = destination.href;
+        link.setAttribute("aria-label", `Putar ${record.collectionName || "video yang disukai"}`);
+        if (record.poster) {
+          const poster = document.createElement("img");
+          poster.src = record.poster;
+          poster.alt = record.collectionName ? `Poster ${record.collectionName}` : "Poster video yang disukai";
+          poster.loading = "lazy";
+          poster.addEventListener("load", () => {
+            frame.style.aspectRatio = `${poster.naturalWidth} / ${poster.naturalHeight}`;
+          }, { once: true });
+          link.append(poster);
+        } else {
+          const placeholder = document.createElement("span");
+          placeholder.className = "liked-poster-missing";
+          placeholder.textContent = "Poster tidak tersedia - Buka video";
+          link.append(placeholder);
+        }
+        frame.append(link);
+        const title = document.createElement("p");
+        title.className = "liked-video-title";
+        title.textContent = record.collectionName || "Video yang disukai";
+        const credit = document.createElement("p");
+        credit.className = "liked-video-credit";
+        credit.textContent = record.credit || "";
+        credit.hidden = !record.credit;
+        card.append(frame, title, credit);
+        likedVideosGrid.append(card);
       });
     }
-    themeButtons.forEach((button) => button.addEventListener("click", () => setTheme(button.dataset.themeChoice)));
-    setTheme(document.documentElement.dataset.theme || "slate");
 
     onAuthStateChanged(auth, (user) => {
       if (!user) {
@@ -140,6 +200,7 @@
         avatarFallback.hidden = true;
       }
       logoutButton.hidden = false;
+      renderLikedVideos();
     });
 
     logoutButton.addEventListener("click", async () => {

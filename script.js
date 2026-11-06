@@ -214,28 +214,42 @@ window.userSignedIn = false;
 
 
 /* LOADING */
+const audioAutoplayKey = "site-audio-autoplay-approved";
+window.siteIsOpen = false;
 window.onload = () => {
   setTimeout(() => {
     loading.style.display = "none";
-    if (window.userSignedIn) {
-      gate.style.display = "none";
+    let audioAutoplayApproved = false;
+    try { audioAutoplayApproved = localStorage.getItem(audioAutoplayKey) === "true"; } catch {}
+    if (!audioAutoplayApproved) {
+      gate.style.display = "block";
       return;
     }
-    gate.style.display = "block";
+    gate.style.display = "none";
+    site.style.display = "block";
+    if (!window.siteIsOpen) {
+      window.siteIsOpen = true;
+      window.playInitialVideo?.();
+    }
   }, 1500);
 };
 
 
 /* ENTER */
-window.openSite = function openSite() {
+window.openSite = function openSite(userInitiated = false) {
+  if (userInitiated) {
+    try { localStorage.setItem(audioAutoplayKey, "true"); } catch {}
+  }
+  if (window.siteIsOpen) return;
+  window.siteIsOpen = true;
   teks.textContent = "Welcome to My Website";
   gate.style.opacity = "0";
   gate.style.transition = "2s ease";
+  window.playInitialVideo?.();
 
   setTimeout(() => {
     gate.style.display = "none";
     site.style.display = "block";
-    window.playInitialVideo?.();
   }, 900);
 }
 
@@ -262,6 +276,8 @@ allVideos.forEach(activeVideo => {
 {
 
 (() => {
+  let autoScrollEnabled = false;
+  try { autoScrollEnabled = localStorage.getItem("site-auto-scroll") === "true"; } catch {}
   const collections = [...document.querySelectorAll("details")]
     .map((details) => ({ details, videos: [...details.querySelectorAll("video")] }))
     .filter((collection) => collection.videos.length);
@@ -285,7 +301,7 @@ allVideos.forEach(activeVideo => {
       <div class="video-side-link video-side-link-static"><span class="video-side-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5h18v13H8l-5 3v-16Z"/><path d="M7 10h10M7 14h7"/></svg></span><span>Messages</span></div>
       <div class="video-side-link video-side-link-static"><span class="video-side-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v13H9l-5 4V4Z"/><path d="M8 10h8M8 13h5"/></svg></span><span>Activity</span></div>
       <div class="video-side-link video-side-link-static"><span class="video-side-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 8v8M8 12h8"/></svg></span><span>Upload</span></div>
-      <a class="video-side-link" href="index2.html"><span id="videoSidebarAvatar" class="video-side-icon video-side-profile" aria-hidden="true"><img alt=""></span><span>Profile</span></a>
+      <button class="video-side-link" type="button" data-profile-open><span id="videoSidebarAvatar" class="video-side-icon video-side-profile" aria-hidden="true"><img alt=""></span><span>Profile</span></button>
       <a class="video-side-link" href="index3.html"><span class="video-side-icon">⌕</span><span>Saran & Sosmed</span></a>
       <div class="video-side-link video-side-link-static"><span class="video-side-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></span><span>More</span></div>
     </nav>
@@ -303,6 +319,32 @@ allVideos.forEach(activeVideo => {
         <span>Simpan</span>
       </button>
     </nav>
+    <div class="shorts-menu-wrap">
+      <button class="shorts-menu-trigger" id="shortsMenuTrigger" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="shortsMenu">⋮</button>
+      <div class="shorts-menu" id="shortsMenu" hidden>
+        <button class="shorts-menu-option" id="autoScrollToggle" type="button" role="switch" aria-checked="false">
+          <span>Autoscroll</span><span class="shorts-menu-switch" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+    <section class="profile-overlay" id="profileOverlay" aria-label="Profil" aria-modal="true" role="dialog" hidden>
+      <div class="profile-dialog">
+        <button class="profile-close" id="profileClose" type="button" aria-label="Tutup profil">×</button>
+        <div class="profile-identity">
+          <div class="profile-avatar-fallback" id="profileAvatarFallback" aria-hidden="true">&#128100;</div>
+          <img class="profile-avatar" id="profileAvatar" alt="Foto profil" hidden>
+          <h2 id="profileName">Pengunjung</h2>
+          <p id="profileEmail"></p>
+        </div>
+        <section class="profile-liked" aria-labelledby="profileLikedTitle">
+          <h3 id="profileLikedTitle">Video yang disukai <span id="profileLikedCount">(0)</span></h3>
+          <p id="profileLikedEmpty">Belum ada video yang disukai.</p>
+          <div class="profile-liked-grid" id="profileLikedGrid"></div>
+        </section>
+        <button class="profile-logout" id="profileLogout" type="button">Log out</button>
+        <p class="profile-status" id="profileStatus" role="status"></p>
+      </div>
+    </section>
     <div class="shorts-list" id="shortsList" aria-label="Daftar video"></div>`;
 
   const clips = [];
@@ -341,11 +383,17 @@ allVideos.forEach(activeVideo => {
 
       const item = document.createElement("article");
       item.className = "shorts-item";
+      video.addEventListener("ended", () => {
+        if (!autoScrollEnabled) return;
+        const currentIndex = clips.findIndex((clip) => clip.video === video);
+        const nextClip = clips[(currentIndex + 1) % clips.length];
+        if (nextClip) list.scrollTo({ top: nextClip.item.offsetTop, behavior: "smooth" });
+      });
       video.addEventListener("click", () => {
         if (video.paused) video.play().catch(() => {});
         else video.pause();
       });
-      item.innerHTML = `<div class="shorts-video"><div class="shorts-video-frame"></div></div><div class="shorts-caption"><p class="shorts-collection"></p><p class="shorts-credit"></p><p class="shorts-count"></p></div><div class="shorts-volume-control"><button class="shorts-volume-toggle" type="button" aria-label="Nyalakan suara" title="Nyalakan suara">🔇</button><input class="shorts-volume-slider" type="range" min="0" max="1" step="0.01" aria-label="Volume video"></div><div class="shorts-controls"><input class="shorts-seek" type="range" min="0" max="100" step="0.1" value="0" aria-label="Posisi video"><span class="shorts-time">0:00 / 0:00</span></div>`;
+      item.innerHTML = `<div class="shorts-video"><div class="shorts-video-frame"></div></div><div class="shorts-caption"><p class="shorts-collection"></p><p class="shorts-credit"></p></div><div class="shorts-volume-control"><button class="shorts-volume-toggle" type="button" aria-label="Nyalakan suara" title="Nyalakan suara">🔇</button><input class="shorts-volume-slider" type="range" min="0" max="1" step="0.01" aria-label="Volume video"></div><div class="shorts-controls"><input class="shorts-seek" type="range" min="0" max="100" step="0.1" value="0" aria-label="Posisi video"><span class="shorts-time">0:00 / 0:00</span></div>`;
       const videoFrame = item.querySelector(".shorts-video-frame");
       const setFrameRatio = (width, height) => {
         if (width > 0 && height > 0) videoFrame.style.aspectRatio = `${width} / ${height}`;
@@ -415,28 +463,138 @@ allVideos.forEach(activeVideo => {
   }
 
   const list = document.getElementById("shortsList");
-  const requestedVideoKey = new URLSearchParams(window.location.search).get("video");
+  const menuTrigger = document.getElementById("shortsMenuTrigger");
+  const menu = document.getElementById("shortsMenu");
+  const autoScrollToggle = document.getElementById("autoScrollToggle");
+  const setAutoScroll = (enabled) => {
+    autoScrollEnabled = enabled;
+    autoScrollToggle.setAttribute("aria-checked", String(enabled));
+    clips.forEach(({ video }) => { video.loop = !enabled; });
+    try { localStorage.setItem("site-auto-scroll", String(enabled)); } catch {}
+  };
+  setAutoScroll(autoScrollEnabled);
+  menuTrigger.addEventListener("click", () => {
+    const isOpen = menuTrigger.getAttribute("aria-expanded") === "true";
+    menu.hidden = isOpen;
+    menuTrigger.setAttribute("aria-expanded", String(!isOpen));
+    menuTrigger.setAttribute("aria-label", isOpen ? "Buka menu" : "Tutup menu");
+  });
+  autoScrollToggle.addEventListener("click", () => setAutoScroll(!autoScrollEnabled));
+  document.addEventListener("click", (event) => {
+    if (menu.hidden || menu.contains(event.target) || menuTrigger.contains(event.target)) return;
+    menu.hidden = true;
+    menuTrigger.setAttribute("aria-expanded", "false");
+    menuTrigger.setAttribute("aria-label", "Buka menu");
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || menu.hidden) return;
+    menu.hidden = true;
+    menuTrigger.setAttribute("aria-expanded", "false");
+    menuTrigger.setAttribute("aria-label", "Buka menu");
+    menuTrigger.focus();
+  });
+  const requestedUrl = new URL(window.location.href);
+  const requestedVideoKey = requestedUrl.searchParams.get("video");
   const requestedClipIndex = requestedVideoKey ? clips.findIndex(({ key }) => key === requestedVideoKey) : -1;
-  clips.forEach(({ item }, index) => {
-    item.querySelector(".shorts-count").textContent = `${index + 1} / ${clips.length}`;
-    list.append(item);
-  });
+  if (requestedVideoKey) {
+    requestedUrl.searchParams.delete("video");
+    window.history.replaceState(window.history.state, "", `${requestedUrl.pathname}${requestedUrl.search}${requestedUrl.hash}`);
+  }
+  clips.forEach(({ item }) => list.append(item));
 
-  const showVideoCount = localStorage.getItem("site-show-video-count") === "true";
-  const countToggle = document.createElement("button");
-  countToggle.type = "button";
-  countToggle.className = "shorts-count-toggle";
-  countToggle.setAttribute("aria-pressed", String(showVideoCount));
-  countToggle.textContent = showVideoCount ? "Sembunyikan nomor video" : "Tampilkan nomor video";
-  countToggle.addEventListener("click", () => {
-    const shouldShow = countToggle.getAttribute("aria-pressed") !== "true";
-    countToggle.setAttribute("aria-pressed", String(shouldShow));
-    countToggle.textContent = shouldShow ? "Sembunyikan nomor video" : "Tampilkan nomor video";
-    document.body.classList.toggle("show-video-count", shouldShow);
-    try { localStorage.setItem("site-show-video-count", String(shouldShow)); } catch {}
+  const profileOverlay = document.getElementById("profileOverlay");
+  const profileName = document.getElementById("profileName");
+  const profileEmail = document.getElementById("profileEmail");
+  const profileAvatar = document.getElementById("profileAvatar");
+  const profileAvatarFallback = document.getElementById("profileAvatarFallback");
+  const profileLikedGrid = document.getElementById("profileLikedGrid");
+  const profileLikedCount = document.getElementById("profileLikedCount");
+  const profileLikedEmpty = document.getElementById("profileLikedEmpty");
+  const profileStatus = document.getElementById("profileStatus");
+  const renderProfile = () => {
+    const user = window.siteCurrentUser;
+    profileName.textContent = user?.displayName || user?.email || "Pengunjung";
+    profileEmail.textContent = user?.email || "";
+    if (user?.photoURL) {
+      profileAvatar.src = user.photoURL;
+      profileAvatar.hidden = false;
+      profileAvatarFallback.hidden = true;
+    } else {
+      profileAvatar.removeAttribute("src");
+      profileAvatar.hidden = true;
+      profileAvatarFallback.hidden = false;
+    }
+    const likedKeys = readClipSet("site-liked-videos");
+    let catalog = {};
+    try { catalog = JSON.parse(localStorage.getItem("site-video-catalog") || "{}"); } catch {}
+    profileLikedGrid.replaceChildren();
+    profileLikedCount.textContent = `(${likedKeys.length})`;
+    profileLikedEmpty.hidden = likedKeys.length > 0;
+    likedKeys.forEach((key) => {
+      const record = catalog[key] || {};
+      const clip = clips.find((candidate) => candidate.key === key);
+      const card = document.createElement("button");
+      card.className = "profile-liked-card";
+      card.type = "button";
+      card.setAttribute("aria-label", `Putar ${record.collectionName || "video yang disukai"}`);
+      const poster = document.createElement("img");
+      poster.src = record.poster || "";
+      poster.alt = "";
+      poster.loading = "lazy";
+      const title = document.createElement("span");
+      title.textContent = record.collectionName || "Video yang disukai";
+      card.append(poster, title);
+      card.addEventListener("click", () => {
+        if (!clip) return;
+        profileResumeVideo = null;
+        profileOverlay.hidden = true;
+        list.scrollTo({ top: clip.item.offsetTop, behavior: "smooth" });
+      });
+      profileLikedGrid.append(card);
+    });
+  };
+  let profileResumeVideo = null;
+  const openProfile = () => {
+    profileResumeVideo = clips[activeClipIndex]?.video || null;
+    clips.forEach(({ video }) => video.pause());
+    renderProfile();
+    profileOverlay.hidden = false;
+    document.getElementById("profileClose").focus();
+  };
+  const closeProfile = () => {
+    profileOverlay.hidden = true;
+    const videoToResume = profileResumeVideo;
+    profileResumeVideo = null;
+    if (videoToResume) videoToResume.play().catch(() => {});
+  };
+  feed.querySelector("[data-profile-open]").addEventListener("click", () => {
+    setMobileSidebarOpen(false);
+    openProfile();
   });
-  document.body.classList.toggle("show-video-count", showVideoCount);
-  feed.append(countToggle);
+  document.getElementById("profileClose").addEventListener("click", closeProfile);
+  profileOverlay.addEventListener("click", (event) => {
+    if (event.target === profileOverlay) closeProfile();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !profileOverlay.hidden) closeProfile();
+  });
+  document.getElementById("profileLogout").addEventListener("click", async () => {
+    const logoutButton = document.getElementById("profileLogout");
+    logoutButton.disabled = true;
+    profileStatus.textContent = "Sedang keluar...";
+    try {
+      await window.logoutGoogle?.();
+      profileStatus.textContent = "";
+      closeProfile();
+    } catch (error) {
+      console.error("Logout gagal:", error);
+      profileStatus.textContent = "Logout gagal. Coba lagi.";
+    } finally {
+      logoutButton.disabled = false;
+    }
+  });
+  window.addEventListener("site-auth-state-change", renderProfile);
+
 
   if (requestedClipIndex >= 0) list.scrollTop = requestedClipIndex * list.clientHeight;
 
@@ -457,7 +615,7 @@ allVideos.forEach(activeVideo => {
   window.playInitialVideo = () => {
     const firstVideo = clips[activeClipIndex]?.video;
     if (!firstVideo) return;
-    firstVideo.muted = true;
+    firstVideo.muted = false;
     firstVideo.playsInline = true;
     firstVideo.play().catch(() => {});
   };
@@ -597,6 +755,11 @@ allVideos.forEach(activeVideo => {
       if (!clip) return;
       if (entry.isIntersecting) attachClipMedia(clip, "auto");
       if (entry.isIntersecting && entry.intersectionRatio >= .7) {
+        const previousClip = clips[activeClipIndex];
+        if (previousClip && previousClip !== clip) {
+          previousClip.video.pause();
+          try { previousClip.video.currentTime = 0; } catch {}
+        }
         activeClipIndex = clips.indexOf(clip);
         updateClipPreloadWindow(activeClipIndex);
         updateVideoActions();

@@ -1,23 +1,3 @@
-nama = "nama saya bagus"
-pekerjaan = "sekolah tebal-tebal, coding tipis-tipis"
-umur = 17
-
-print(nama, pekerjaan, umur)
-
-
-if umur <= 17:
-    print("boleh melanjutkan jenjang lebih lanjut")
-else:
-    print("belum waktunya melanjutkan")
-
-nilai = 85
-
-if nilai <= 80:
-    print("Lulus")
-else:
-    print("Tidak lulus")
-
-
 print("================================")
 print("       TOKO KOMPUTER VICAR")
 print("================================")

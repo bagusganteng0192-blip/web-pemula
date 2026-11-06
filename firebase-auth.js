@@ -5,7 +5,8 @@ import { getApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.j
     browserLocalPersistence,
     onAuthStateChanged,
     GoogleAuthProvider,
-    signInWithPopup
+    signInWithPopup,
+    signOut
   } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
 
   const auth = getAuth(getApp());
@@ -20,6 +21,7 @@ import { getApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.j
   onAuthStateChanged(auth, (user) => {
     const profileLoginButton = document.getElementById("profileLoginButton");
     window.userSignedIn = Boolean(user);
+    window.siteCurrentUser = user || null;
     window.dispatchEvent(new CustomEvent("site-auth-state-change", { detail: { signedIn: Boolean(user) } }));
 
     const profileAvatar = document.getElementById("videoSidebarAvatar");
@@ -44,12 +46,16 @@ import { getApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.j
     }
 
     profileLoginButton.hidden = true;
-    window.openSite();
+    try { if (localStorage.getItem("site-audio-autoplay-approved") === "true") window.openSite(); } catch {}
   });
+
+  window.logoutGoogle = async function () { await signOut(auth); };
 
   window.loginGoogle = async function () {
     try {
       const result = await signInWithPopup(auth, googleProvider);
+      try { localStorage.setItem("site-audio-autoplay-approved", "true"); } catch {}
+      window.openSite(true);
       const nama = result.user.displayName || result.user.email || "pengunjung";
       document.getElementById("teks").textContent = `Halo, ${nama}`;
     } catch (error) {

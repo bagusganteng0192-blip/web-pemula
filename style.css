@@ -913,7 +913,7 @@ details { display: none !important; }
 .shorts-caption p { margin: 3px 0; color: inherit; }
 .shorts-collection { font-weight: 700; }
 .shorts-credit { font-size: .9rem; }
-.shorts-count { font-size: .8rem; opacity: .8; }
+.shorts-count { display: none; }
 
 .shorts-volume-control {
   position: absolute;
@@ -1295,3 +1295,5 @@ details[open] > summary.mute::after {
   background-size: auto;
   animation: none;
 }
+.video-page.show-video-count .shorts-count { display: block; }
+.shorts-count-toggle { position: fixed; z-index: 20; top: 16px; right: 16px; padding: 9px 12px; border: 1px solid rgba(255,255,255,.22); border-radius: 9px; background: rgba(7,9,14,.82); color: #fff; cursor: pointer; }

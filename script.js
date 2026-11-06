@@ -318,8 +318,24 @@ allVideos.forEach(activeVideo => {
       const credit = nextText && /^(P|H[1-6])$/.test(nextText.tagName)
         ? nextText.textContent.replace(/\s+/g, " ").trim()
         : "";
+      const posterSrc = video.getAttribute("poster");
+      if (posterSrc) {
+        video.dataset.posterSrc = posterSrc;
+        video.removeAttribute("poster");
+      }
+      const sourceElements = [...video.querySelectorAll("source")];
+      sourceElements.forEach((source) => {
+        source.dataset.src = source.getAttribute("src") || "";
+        source.removeAttribute("src");
+      });
+      const directVideoSrc = video.getAttribute("src");
+      if (directVideoSrc) {
+        video.dataset.videoSrc = directVideoSrc;
+        video.removeAttribute("src");
+      }
       video.controls = false;
       video.preload = "none";
+      video.load();
       video.playsInline = true;
       video.loop = true;
 
@@ -331,22 +347,10 @@ allVideos.forEach(activeVideo => {
       });
       item.innerHTML = `<div class="shorts-video"><div class="shorts-video-frame"></div></div><div class="shorts-caption"><p class="shorts-collection"></p><p class="shorts-credit"></p><p class="shorts-count"></p></div><div class="shorts-volume-control"><button class="shorts-volume-toggle" type="button" aria-label="Nyalakan suara" title="Nyalakan suara">🔇</button><input class="shorts-volume-slider" type="range" min="0" max="1" step="0.01" aria-label="Volume video"></div><div class="shorts-controls"><input class="shorts-seek" type="range" min="0" max="100" step="0.1" value="0" aria-label="Posisi video"><span class="shorts-time">0:00 / 0:00</span></div>`;
       const videoFrame = item.querySelector(".shorts-video-frame");
-      let posterRatioLoaded = false;
       const setFrameRatio = (width, height) => {
         if (width > 0 && height > 0) videoFrame.style.aspectRatio = `${width} / ${height}`;
       };
-      const updateFrameFromVideo = () => {
-        if (!posterRatioLoaded) setFrameRatio(video.videoWidth, video.videoHeight);
-      };
-      video.addEventListener("loadedmetadata", updateFrameFromVideo);
-      if (video.poster) {
-        const posterImage = new Image();
-        posterImage.addEventListener("load", () => {
-          posterRatioLoaded = true;
-          setFrameRatio(posterImage.naturalWidth, posterImage.naturalHeight);
-        }, { once: true });
-        posterImage.src = video.poster;
-      }
+      video.addEventListener("loadedmetadata", () => setFrameRatio(video.videoWidth, video.videoHeight));
       videoFrame.append(video);
       item.querySelector(".shorts-collection").textContent = collectionName;
       item.querySelector(".shorts-credit").textContent = credit;
@@ -390,15 +394,15 @@ allVideos.forEach(activeVideo => {
         video.addEventListener(eventName, updateControls);
       });
       updateControls();
-      const clipKey = video.querySelector("source")?.getAttribute("src") || video.getAttribute("poster") || `${collectionName}-${clips.length}`;
-      clips.push({ item, video, collectionName, collectionId: heading?.id || "", key: clipKey });
+      const clipKey = sourceElements[0]?.dataset.src || video.dataset.videoSrc || video.dataset.posterSrc || `${collectionName}-${clips.length}`;
+      clips.push({ item, video, sources: sourceElements, collectionName, collectionId: heading?.id || "", key: clipKey });
     });
     details.remove();
   });
 
   const videoCatalog = Object.fromEntries(clips.map(({ item, video, collectionName, key }) => [key, {
-    src: video.querySelector("source")?.getAttribute("src") || video.getAttribute("src") || "",
-    poster: video.getAttribute("poster") || "",
+    src: video.dataset.videoSrc || video.querySelector("source")?.dataset.src || "",
+    poster: video.dataset.posterSrc || "",
     collectionName,
     credit: item.querySelector(".shorts-credit")?.textContent.trim() || ""
   }]));
@@ -417,6 +421,22 @@ allVideos.forEach(activeVideo => {
     item.querySelector(".shorts-count").textContent = `${index + 1} / ${clips.length}`;
     list.append(item);
   });
+
+  const showVideoCount = localStorage.getItem("site-show-video-count") === "true";
+  const countToggle = document.createElement("button");
+  countToggle.type = "button";
+  countToggle.className = "shorts-count-toggle";
+  countToggle.setAttribute("aria-pressed", String(showVideoCount));
+  countToggle.textContent = showVideoCount ? "Sembunyikan nomor video" : "Tampilkan nomor video";
+  countToggle.addEventListener("click", () => {
+    const shouldShow = countToggle.getAttribute("aria-pressed") !== "true";
+    countToggle.setAttribute("aria-pressed", String(shouldShow));
+    countToggle.textContent = shouldShow ? "Sembunyikan nomor video" : "Tampilkan nomor video";
+    document.body.classList.toggle("show-video-count", shouldShow);
+    try { localStorage.setItem("site-show-video-count", String(shouldShow)); } catch {}
+  });
+  document.body.classList.toggle("show-video-count", showVideoCount);
+  feed.append(countToggle);
 
   if (requestedClipIndex >= 0) list.scrollTop = requestedClipIndex * list.clientHeight;
 
@@ -524,12 +544,61 @@ allVideos.forEach(activeVideo => {
     list.scrollTo({ top: 0, behavior: "smooth" });
   });
 
+  let preloadTimer = null;
+  const attachClipMedia = (clip, preloadMode = "auto") => {
+    const { video, sources = [] } = clip;
+    let sourceChanged = false;
+    video.preload = preloadMode;
+    if (video.dataset.videoSrc && !video.hasAttribute("src")) {
+      video.setAttribute("src", video.dataset.videoSrc);
+      sourceChanged = true;
+    }
+    sources.forEach((source) => {
+      if (source.dataset.src && !source.hasAttribute("src")) {
+        source.setAttribute("src", source.dataset.src);
+        sourceChanged = true;
+      }
+    });
+    if (video.dataset.posterSrc && !video.poster) video.poster = video.dataset.posterSrc;
+    if (sourceChanged) video.load();
+  };
+  const releaseClipMedia = (clip) => {
+    const { video, sources = [] } = clip;
+    const hasAttachedMedia = video.hasAttribute("src") || video.hasAttribute("poster") || sources.some((source) => source.hasAttribute("src"));
+    if (!hasAttachedMedia) return;
+    video.pause();
+    video.removeAttribute("src");
+    sources.forEach((source) => source.removeAttribute("src"));
+    video.removeAttribute("poster");
+    video.preload = "none";
+    video.load();
+  };
+  const updateClipPreloadWindow = (currentIndex) => {
+    if (preloadTimer) clearTimeout(preloadTimer);
+    clips.forEach((clip, index) => {
+      if (index < currentIndex - 5 || index > currentIndex + 3) releaseClipMedia(clip);
+    });
+    attachClipMedia(clips[currentIndex], "auto");
+    const upcoming = [1, 2, 3]
+      .map((distance) => ({ clip: clips[currentIndex + distance], distance }))
+      .filter(({ clip }) => Boolean(clip));
+    let nextIndex = 0;
+    const preloadUpcoming = () => {
+      if (activeClipIndex !== currentIndex || nextIndex >= upcoming.length) return;
+      const { clip, distance } = upcoming[nextIndex++];
+      attachClipMedia(clip, distance === 1 ? "auto" : "metadata");
+      if (nextIndex < upcoming.length) preloadTimer = setTimeout(preloadUpcoming, 700);
+    };
+    if (upcoming.length) preloadTimer = setTimeout(preloadUpcoming, 400);
+  };
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const clip = clips.find((candidate) => candidate.item === entry.target);
       if (!clip) return;
+      if (entry.isIntersecting) attachClipMedia(clip, "auto");
       if (entry.isIntersecting && entry.intersectionRatio >= .7) {
         activeClipIndex = clips.indexOf(clip);
+        updateClipPreloadWindow(activeClipIndex);
         updateVideoActions();
         clips.forEach(({ video }) => { if (video !== clip.video) video.pause(); });
         clip.video.play().catch(() => {});
@@ -548,3 +617,4 @@ allVideos.forEach(activeVideo => {
 })();
 
 }
+
